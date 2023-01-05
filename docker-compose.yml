@@ -1,0 +1,25 @@
+version: '3'
+services:
+
+  mysql:
+    image: mysql:8.0
+    volumes:
+      - mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=secret
+      - MYSQL_DATABASE=laravel_app
+      - LANG=C.UTF-8
+
+  app:
+    build: ./php
+    volumes:
+      - ./src:/var/www/src
+      - ./php/000-default.conf:/etc/apache2/sites-enabled/000-default.conf
+    ports:
+      - 8080:80
+    depends_on:
+      - mysql
+volumes:
+  mysql:
