@@ -6,4 +6,4 @@ RUN apt-get update && apt-get install -y libonig-dev git vim && \
 
 WORKDIR /var/www/src
 
-COPY --from=composer:1.10 /usr/bin/composer /usr/bin/composer
+COPY --from=composer:2.2.5 /usr/bin/composer /usr/bin/composer
