@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Todo;
+//削除
+//use Illuminate\Http\Request;
+//追加
+use App\Http\Requests\TodoRequest;
 
 class TodoController extends Controller
 {
