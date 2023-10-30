@@ -6,7 +6,9 @@ services:
     volumes:
       - mysql:/var/lib/mysql
     ports:
-      - 3306:3306
+      - 3307:3306
+    expose:
+      - 3307
     environment:
       - MYSQL_ROOT_PASSWORD=secret
       - MYSQL_DATABASE=laravel_app
