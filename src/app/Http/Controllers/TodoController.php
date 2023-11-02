@@ -9,9 +9,9 @@ class TodoController extends Controller
 {
     private $todo;
 
-    public function __constract(Todo $todo)
+    public function __construct(Todo $todo)
     {
-        $this->todo =$todo;
+        $this->todo = $todo;
     }
 
     public function create()
