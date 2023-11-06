@@ -24,7 +24,7 @@ class TodoController extends Controller
    {
    return view('todo.create');
    }
-   
+
   public function store(Request $request)
    {
       
@@ -34,5 +34,10 @@ class TodoController extends Controller
       return redirect()->route('todo.index');
    }
 
+   public function show($id)
+    {
+      $todo = $this->todo->find($id);
+      return view('todo.show', ['todo' => $todo]);
+    }
 }
 
