@@ -95,5 +95,7 @@ class TodoController extends Controller
         //delete()でDELETE文を実行
         $todo->delete();
         return redirect()->route('todo.index');
+
+        //論理削除(SoftDeletes)を実装した結果、ここのメソッドが書き換えられた
     }
 }
