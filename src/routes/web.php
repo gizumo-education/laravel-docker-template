@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/todo/create', function () {
+    return view('todo.create');
+})->name('todo.create');
+
