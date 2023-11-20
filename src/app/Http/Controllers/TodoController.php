@@ -98,4 +98,17 @@ class TodoController extends Controller
 
         //論理削除(SoftDeletes)を実装した結果、ここのメソッドが書き換えられた
     }
+
+    //完了機能
+    public function complete($id)
+    {
+        $todo = $this->todo->find($id);
+        $todo->is_completed = !$todo->is_completed;
+        //左辺の状態がtrue(完了状態)かfalse(未完了状態)を右辺で否定した逆の結果に代入する
+        $todo->save();
+        //逆の状態を保存する
+        return response()->json(['is_completed' => $todo->is_completed]);
+        //json形式でレスポンスを返す
+        //jsonとはテキストで構成されたデータの１つ
+    }
 }
