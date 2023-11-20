@@ -16,6 +16,11 @@ class TodoController extends Controller
         $this->todo = $todo;
     }
 
+    public function index()
+    {
+        $todos = $this->todo->all(); //all():DBとの媒介のような役割を担う
+        return view('todo.index', ['todos' => $todos]);
+    }
 
     public function create()
     {
@@ -28,5 +33,6 @@ class TodoController extends Controller
         $inputs = $request->all();
         $this->todo->fill($inputs);
         $this->todo->save();
+        return redirect()->route('todo.index');
     }
 }
