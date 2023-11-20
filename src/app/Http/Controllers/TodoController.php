@@ -35,4 +35,10 @@ class TodoController extends Controller
         $this->todo->save();
         return redirect()->route('todo.index');
     }
+
+    public function show($id)
+    {
+        $todo = $this->todo->find($id); //インスタンスの実体として$this->todoのTodoと$todoのTodoは別物
+        return view('todo.show', ['todo' => $todo]);
+    }
 }
