@@ -27,9 +27,8 @@ class TodoController extends Controller
         $inputs = $request->all();
         // Requestクラスのall()を使用し、フォームで入力された値を連想配列に変換して取得
         $this->todo->fill($inputs);
-        dd($this->todo);
         // 連想配列を渡しその情報を$this->todoに保存
         $this->todo->save();
     }
-
+    // fiiでモデルに値を一括セット
 }
