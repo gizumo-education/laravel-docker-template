@@ -41,4 +41,12 @@ class TodoController extends Controller
         return view('todo.index', ['todos' => $todos]);
         // todosという名前の変数に$todosの中身を入れて、todo/index.blade.phpで使えるように
     }
+
+    public function show($id)
+    {
+        // dd($id);
+        // $todo = $this->todo->find($id);
+        // モデルが対応するテーブルのプライマリーキーを引数に受け取り、その対象レコードを一件取得
+        return view('todo.show', ['todo' => $todo]);
+    }
 }
