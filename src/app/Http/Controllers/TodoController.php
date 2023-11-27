@@ -29,6 +29,16 @@ class TodoController extends Controller
         $this->todo->fill($inputs);
         // 連想配列を渡しその情報を$this->todoに保存
         $this->todo->save();
+        // ToDo一覧画面にリダイレクト
+        return redirect()->route('todo.index');
     }
     // fiiでモデルに値を一括セット
+
+    public function index()
+    {
+        $todos = $this->todo->all();
+        // モデルが対応するテーブルにSELECT文を実行しレコードを取得
+        return view('todo.index', ['todos' => $todos]);
+        // todosという名前の変数に$todosの中身を入れて、todo/index.blade.phpで使えるように
+    }
 }
