@@ -43,7 +43,7 @@ class TodoController extends Controller
     public function show($id)
     {
         $todo = $this->todo->find($id);
-        return view('todo.show', ['todo' => $todo]);
+        return view('todo.show', ['todo' => $todo]);//$todoをtodoに代入している
     }
 
 
@@ -69,5 +69,14 @@ class TodoController extends Controller
         $todo = $this->todo->find($id);
         $todo->delete();
         return redirect()->route('todo.index');
+    }
+
+
+    public function complete($id)
+    {
+        $todo = $this->todo->find($id);
+        $todo->is_completed = !$todo->is_completed;
+        $todo->save();
+        return response()->json(['is_completed' => $todo->is_completed]);
     }
 }
