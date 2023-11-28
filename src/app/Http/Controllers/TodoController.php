@@ -92,7 +92,7 @@ class TodoController extends Controller
         // 追加
         //find($id)でレコード特定
         $todo = $this->todo->find($id);
-        //delete()でDELETE文を実行
+        //dd($todo);
         $todo->delete();
         return redirect()->route('todo.index');
 

@@ -19,6 +19,7 @@ $(function() {
       {
         type: 'POST',
         headers: { 'X-CSRF-TOKEN': csrfToken }
+        //deta: {'_token': csrfToken}
       }
     )
     .done(function(data) {
