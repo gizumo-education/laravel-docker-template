@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TodoRequest;
 use App\Todo;
 // TodoモデルをControllerにて呼び出し、インスタンス化/
-use Illuminate\Http\Request;
+
 
 class TodoController extends Controller
 {
@@ -22,7 +23,7 @@ class TodoController extends Controller
         return view('todo.create');
     }
 
-    public function store(Request $request)
+    public function store(TodoRequest $request)
     {
         $inputs = $request->all();
         // Requestクラスのall()を使用し、フォームで入力された値を連想配列に変換して取得
@@ -57,7 +58,7 @@ class TodoController extends Controller
     }
 
     // 追加
-    public function update(Request $request, $id)
+    public function update(TodoRequest $request, $id)
     {
         $inputs = $request->all();
         $todo = $this->todo->find($id);
