@@ -45,8 +45,24 @@ class TodoController extends Controller
     public function show($id)
     {
         // dd($id);
-        // $todo = $this->todo->find($id);
+        $todo = $this->todo->find($id);
         // モデルが対応するテーブルのプライマリーキーを引数に受け取り、その対象レコードを一件取得
         return view('todo.show', ['todo' => $todo]);
+    }
+
+    public function edit($id)
+    {
+        $todo = $this->todo->find($id);
+        return view('todo.edit', ['todo' => $todo]);
+    }
+
+    // 追加
+    public function update(Request $request, $id)
+    {
+        $inputs = $request->all();
+        $todo = $this->todo->find($id);
+        $todo->fill($inputs);
+        $todo->save();
+        return redirect()->route('todo.show', $todo->id);
     }
 }
