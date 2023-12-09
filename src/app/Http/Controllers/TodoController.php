@@ -37,9 +37,10 @@ class TodoController extends Controller
 
     public function index()
     {
-        $todos = $this->todo->all();
+        $hoge = $this->todo->all();
+        // dd($todos);
         // モデルが対応するテーブルにSELECT文を実行しレコードを取得
-        return view('todo.index', ['todos' => $todos]);
+        return view('todo.index', ['hoge' => $hoge]);
         // todosという名前の変数に$todosの中身を入れて、todo/index.blade.phpで使えるように
     }
 
@@ -65,5 +66,12 @@ class TodoController extends Controller
         $todo->fill($inputs);
         $todo->save();
         return redirect()->route('todo.show', $todo->id);
+    }
+
+    public function delete($id)
+    {
+        $todo = $this->todo->find($id);
+        $todo->delete();
+        return redirect()->route('todo.index');
     }
 }

@@ -10,10 +10,11 @@
         ToDo一覧
       </div>
       <div class="list-group list-group-flush">
-      @foreach ($todos as $todo)
+      @foreach ($hoge as $todo)
         <div class="d-flex">
           <a href="{{ route('todo.show', $todo->id) }}" class="list-group-item list-group-item-action">
             {{ $todo->content }}
+          
           </a>
         </div>
       @endforeach
