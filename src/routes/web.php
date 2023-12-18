@@ -11,6 +11,16 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+// Route::get('/test', function ()
+// {
+//     echo 'hello world!';
+// });
+
+Route::get('/todo/create', function ()
+{
+    return view('todo.create');
+})->name('todo.create');
