@@ -26,6 +26,7 @@
     </nav>
     <main class="py-4">
       <div class="container">
+        <!-- yield = イルード -->
         @yield('content')
       </div>
     </main>

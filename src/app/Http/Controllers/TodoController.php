@@ -49,7 +49,6 @@ class TodoController extends Controller
     {
         $inputs = $request->all();
         $todo = $this->todo->find($id);
-        dd($this->todo->id, $todo->id);
         $todo->fill($inputs);
         $todo->save();
         return redirect()->route('todo.show', $todo->id);
