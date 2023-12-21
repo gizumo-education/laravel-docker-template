@@ -32,5 +32,11 @@ class TodoController extends Controller
         $this->todo->save();
         return redirect()->route('todo.index');
     }
+
+    public function show($id)
+    {
+        $todo = $this->todo->find($id);
+        return view('todo.show', ['todo' => $todo]);
+    }
     
 }
