@@ -49,5 +49,24 @@ class TodoController extends Controller
         // 詳細画面のBladeを作成して、取得したTodoのデータを表示
         return view('todo.show', ['todo' => $todo]);
     }
+     // 追加
+     public function edit($id)
+     {
+         $todo = $this->todo->find($id);
+         return view('todo.edit', ['todo' => $todo]);
+     }
+ 
+     // 追加
+     public function update(Request $request, $id)
+     {
+         // データ更新の処理
+         $inputs = $request->all();
+         $todo = $this->todo->find($id);
+         $todo->fill($inputs);
+         $todo->save();
+         return redirect()->route('todo.show', $todo->id);
+        //dd($this->todo->id, $todo->id);
+ 
+     }
 
 }
