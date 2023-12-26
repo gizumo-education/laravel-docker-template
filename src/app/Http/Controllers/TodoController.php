@@ -42,5 +42,12 @@ class TodoController extends Controller
         return redirect()->route('todo.index');
 
     }
-    
+    //URIパラメータが存在するルートは、Controllerメソッドの引数としてその値を受け取る。
+    public function show($id)
+    {
+        $todo = $this->todo->find($id);
+        // 詳細画面のBladeを作成して、取得したTodoのデータを表示
+        return view('todo.show', ['todo' => $todo]);
+    }
+
 }

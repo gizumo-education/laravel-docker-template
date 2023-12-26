@@ -28,5 +28,8 @@ Route::get('/todo/create', 'TodoController@create')->name('todo.create');
 // 追加
 Route::post('/todo', 'TodoController@store')->name('todo.store');
 
-//ToDo一覧画面表示用のルートと、それに対応するControllerメソッドを用意
+//ToDo一覧画面表示用のルート追加。それに対応するControllerメソッドを用意
 Route::get('/todo', 'TodoController@index')->name('todo.index');
+
+// 詳細画面用のルートを追加。
+Route::get('/todo/{id}', 'TodoController@show')->name('todo.show');
