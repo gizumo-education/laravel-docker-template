@@ -15,7 +15,7 @@
           </div>
           <div class="col-auto">
             <form method="POST" action="{{ route('todo.delete', $todo->id) }}">
-              @method('DELETE')
+              @method('delete')
               @csrf
               <button type="submit" class="btn btn-danger">削除する</button>
             </form>
