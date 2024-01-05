@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Todo;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
-    //
+    private $todo;
+
+    public function __construct(Todo $todo)
+    {
+        $this->todo = $todo;
+    }
+    
     public function create()
     {
         return view('todo.create');
@@ -14,6 +21,9 @@ class TodoController extends Controller
 
 public function store(Request $request)
     {
-        dd($request->all());
+        $inputs = $request->all();
+        $this->todo->fill($inputs);
+        dd($this->todo);
+        $this->todo->save();
     }
 }
