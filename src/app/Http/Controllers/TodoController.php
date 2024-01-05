@@ -23,7 +23,6 @@ public function store(Request $request)
     {
         $inputs = $request->all();
         $this->todo->fill($inputs);
-        dd($this->todo);
         $this->todo->save();
     }
 }
