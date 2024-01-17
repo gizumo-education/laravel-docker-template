@@ -25,7 +25,7 @@ class TodoController extends Controller
         return view('todo.create');
     }
 
-public function store(Request $request)
+    public function store(Request $request)
     {
         $inputs = $request->all();
         $this->todo->fill($inputs);
