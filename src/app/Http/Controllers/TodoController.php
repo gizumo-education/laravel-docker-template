@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Todo;
 use Illuminate\Http\Request;
+// use resources\view;
 
 class TodoController extends Controller
 {
@@ -12,6 +13,12 @@ class TodoController extends Controller
     public function __construct(Todo $todo)
     {
         $this->todo = $todo;
+    }
+
+    public function index()
+    {
+        $todos = $this->todo->all();
+        return view('todo.index', ['todos' => $todos]);
     }
 
     public function create()
@@ -24,5 +31,6 @@ class TodoController extends Controller
         $inputs = $request->all();
         $this->todo->fill($inputs);
         $this->todo->save();
+        return redirect()->route('todo.index');
     }
 }
