@@ -17,7 +17,6 @@ class TodoController extends Controller
     public function index()
     {
         $todos = $this->todo->all();
-        
         return view('todo.index', ['todos' => $todos]);
     }
 
@@ -54,5 +53,12 @@ class TodoController extends Controller
         $todo->save();
         return redirect()->route('todo.show', $todo->id);
         
+    }
+
+    public function delete($id)
+    {
+        $todo = $this->todo->find($id);
+        $todo->delete();
+        return redirect()->route('todo.index');
     }
 }
