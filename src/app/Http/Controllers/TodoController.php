@@ -24,5 +24,12 @@ class TodoController extends Controller
         $inputs = $request->all();
         $this->todo->fill($inputs);
         $this->todo->save();
+        return redirect()->route('todo.index');
+    }
+
+    public function index()
+    {
+        $todos = $this->todo->all();
+        return view('todo.index', ['todos' => $todos]);
     }
 }
