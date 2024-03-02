@@ -11,6 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// use Illuminate\Routing\Route;
+use Illuminate\Support\Facades\Route;
+
+Route::get('/todo/create', function() {
+    return view('todo.create');
+})->name('todo.create');
