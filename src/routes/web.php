@@ -14,6 +14,5 @@
 // use Illuminate\Routing\Route;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/todo/create', function() {
-    return view('todo.create');
-})->name('todo.create');
+Route::get('/todo/create', 'TodoController@create')->name('todo.create');
+Route::post('/todo', 'TodoController@store')->name('todo.store');
