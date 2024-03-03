@@ -32,4 +32,10 @@ class TodoController extends Controller
         $todos = $this->todo->all();
         return view('todo.index', ['todos' => $todos]);
     }
+
+    public function show($id)
+    {
+        $todo = $this->todo->find($id);
+        return view('todo.show', ['todo' => $todo]);
+    }
 }
