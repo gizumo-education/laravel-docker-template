@@ -1,0 +1,11 @@
++--------+----------+----------------+-------------+--------------------------------------------+--------------+
+| Domain | Method   | URI            | Name        | Action                                     | Middleware   |
++--------+----------+----------------+-------------+--------------------------------------------+--------------+
+|        | GET|HEAD | api/user       |             | Closure                                    | api,auth:api |
+|        | POST     | todo           | todo.store  | App\Http\Controllers\TodoController@store  | web          |
+|        | GET|HEAD | todo           | todo.index  | App\Http\Controllers\TodoController@index  | web          |
+|        | GET|HEAD | todo/create    | todo.create | App\Http\Controllers\TodoController@create | web          |
+|        | GET|HEAD | todo/{id}      | todo.show   | App\Http\Controllers\TodoController@show   | web          |
+|        | PUT      | todo/{id}      | todo.update | App\Http\Controllers\TodoController@update | web          |
+|        | GET|HEAD | todo/{id}/edit | todo.edit   | App\Http\Controllers\TodoController@edit   | web          |
++--------+----------+----------------+-------------+--------------------------------------------+--------------+
