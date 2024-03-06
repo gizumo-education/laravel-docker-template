@@ -11,8 +11,6 @@
 |
 */
 
-// use Illuminate\Routing\Route;
-
 use App\Http\Controllers\TodoController;
 use Illuminate\Support\Facades\Route;
 
