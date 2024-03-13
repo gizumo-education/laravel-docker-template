@@ -7,7 +7,7 @@
     </p>
     <div class="card">
       <div class="card-header">
-        ToDo一覧
+        ToDo一覧です
       </div>
       <div class="list-group list-group-flush">
       @foreach ($todos as $todo)
