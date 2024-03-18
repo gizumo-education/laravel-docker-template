@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+// 追加
+Route::get('/test', function () {
+    echo 'Hello World!';
+});
+
+Route::get('/todo/create', 'TodoController@create')->name('todo.create');
+
+Route::post('/todo', 'TodoController@store')->name('todo.store');
