@@ -25,18 +25,18 @@ class TodoController extends Controller
     }
 
     // フォームから送信されたTodoを保存する
-    public function store(TodoRequest $request)
+    public function store(TodoRequest $request)//型指定してる
     {
         $inputs = $request->all();
         $this->todo->fill($inputs); //fillメソッドですべての入力データをモデルに設定（ただ更新できるのはtodo.phpでホワイトリストにしているもののみ）
-        $this->todo->save(); //モデルの状態をデータベースに保存している　update関数
+        $this->todo->save(); //モデルの状態をデータベースに保存している　インサート関数 
         return redirect()->route('todo.index');
     }
 
     // すべてのTodoを取得して、一覧を表示する
     public function index()
     {
-        $todos = $this->todo->all(); //Todoのホワイトリストに設定したすべてを取得　Select文　Collectionクラス
+        $todos = $this->todo->all(); //Select文　Collectionクラス 配列を操作ができる
         return view('todo.index', ['todos' => $todos]); //第一引数は対象のBladeファイル　第二引数はそのBladeファイルで呼び出せる変数
         //dd($todos); 
     }
@@ -44,7 +44,7 @@ class TodoController extends Controller
     // 特定のTodoを表示する
     public function show($id)
     {
-        $todo = $this->todo->find($id);
+        $todo = $this->todo->find($id); //find()で参照している　Serect文
         return view('todo.show', ['todo' => $todo]);
     }
 
@@ -56,15 +56,22 @@ class TodoController extends Controller
     }
 
     // フォームから送信されたTodoを更新する
-    public function update(TodoRequest $request, $id)
+    public function update(TodoRequest $request, $id) 
     {
+        // フォームから送信されたデータを取得
         $inputs = $request->all();
+        
+        // 指定されたIDに対応するToDoレコードをデータベースから検索
         $todo = $this->todo->find($id);
+        
+        // 取得したデータでToDoレコードの属性を更新
         $todo->fill($inputs);
-        $todo->save();
+        
+        // 更新したToDoレコードをデータベースに保存
+        $todo->save(); // Update関数
+        
+        // 更新後のToDoの詳細ページにリダイレクト
         return redirect()->route('todo.show', $todo->id);
     }
+    
 }
-
-
-//なぜfill()を利用したのか。そのメリットをご自身で調べてみてください（レビュー時に聞きます）。
