@@ -81,4 +81,13 @@ class TodoController extends Controller
         $todo->delete(); // DELETE文を実行してレコードを削除
         return redirect()->route('todo.index'); //ホームに戻る
     }
+
+    //完了のリクエスト
+    public function complete($id) 
+    {
+        $todo = $this->todo->find($id);
+        $todo->is_completed = !$todo->is_completed;
+        $todo->save();
+        return response()->json(['is_completed' => $todo->is_completed]);
+    }
 }

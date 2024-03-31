@@ -32,3 +32,5 @@ Route::get('/todo/{id}/edit', 'TodoController@edit')->name('todo.edit');//更新
 Route::put('/todo/{id}', 'TodoController@update')->name('todo.update');
 
 Route::delete('/todo/{id}', 'TodoController@delete')->name('todo.delete');//論理削除
+
+Route::post('/todo/{id}/complete', 'TodoController@complete')->name('todo.complete');//完了のリクエスト
