@@ -39,5 +39,22 @@ class TodoController extends Controller
         $todo = $this->todo->find($id);
         return view('todo.show', ['todo' => $todo]);
     }
-    
+
+    public function edit($id)
+    {
+        $todo = $this->todo->find($id);
+        return view('todo.edit', ['todo' => $todo]);
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $inputs = $request->all();
+        $todo = $this->todo->find($id);
+        $todo->fill($inputs);
+        $todo->save();
+        return redirect()->route('todo.show', $todo->id);
+    }
+
+
 }
