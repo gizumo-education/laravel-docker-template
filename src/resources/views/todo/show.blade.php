@@ -14,10 +14,24 @@
           <div class="col-auto">
             <a href="{{ route('todo.edit', $todo->id) }}" class="btn btn-info">編集する</a>
           </div>
+
+          <div class="col-auto">
+            <form method="POST" action="{{ route('todo.delete', $todo->id) }}">
+              @method('delete')
+              @csrf
+              <button type="submit" class="btn btn-danger">削除する</button>
+            </form>
+          </div>
+          
         </div>
-        
       </div>
     </div>
   </div>
 </div>
 @endsection
+
+
+<!-- 
+
+TodoControllerのfunction showで受け取った$todo
+ -->

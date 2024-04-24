@@ -10,7 +10,7 @@
         ToDo一覧
       </div>
       <div class="list-group list-group-flush">
-      @foreach ($todos as $todo)
+      @foreach ($todo as $todo)
           <a href="{{ route('todo.show', $todo->id) }}" class="list-group-item list-group-item-action">
             {{ $todo->content }}
           </a>
@@ -20,3 +20,11 @@
   </div>
 </div>
 @endsection
+
+
+<!-- 
+
+  "{{ route('todo.show', $todo->id) }}"："詳細画面のURL,ルートパラメータ"
+  todo.showで取得したidをURlに表示している
+
+ -->

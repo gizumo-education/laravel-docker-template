@@ -26,3 +26,8 @@
   </div>
 </div>
 @endsection
+
+<!-- 
+
+@method('PUT')　HTMLでPUTメソッドがサポートされていないから@method('PUT')と書くとLaravelがPUTメソッドと判断してくれる
+ -->
