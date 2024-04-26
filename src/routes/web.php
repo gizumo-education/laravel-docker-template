@@ -15,6 +15,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-route::get('/todo', function () {
-    echo 'Hello World!';
-});
+route::get('/todo', 'TodoController@index');
