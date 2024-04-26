@@ -13,6 +13,7 @@
 </head>
 
 <body>
+  @dd($todoList)
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
       <div class="container">
@@ -37,13 +38,6 @@
               <div class="card-header">
                 ToDo一覧
               </div>
-              <div class="list-group list-group-flush">
-                @foreach ($todoList as $todo)
-                <div class="d-flex align-items-center p-2">
-                  <span class="col-9">{{ $todo->content }}</span>
-                </div>
-                @endforeach
-              </div>
             </div>
           </div>
         </div>
@@ -53,4 +47,3 @@
 </body>
 
 </html>
-<!-- ここまで -->
