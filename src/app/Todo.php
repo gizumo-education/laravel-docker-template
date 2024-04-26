@@ -1,6 +1,6 @@
 <?php
 
-namespace Http\Controllers;
+namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
@@ -17,11 +17,9 @@ class TodoController extends Controller
 {
     public function index()
     {
-        // 追加
         $todo = new Todo();
         $todoList = $todo->all();
 
         return view('todo.index', ['todoList' => $todoList]);
     }
 }
-
