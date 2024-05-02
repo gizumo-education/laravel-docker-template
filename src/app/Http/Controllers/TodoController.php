@@ -19,7 +19,6 @@ class TodoController extends Controller
 
     public function create()
     {
-
         return view('todo.create');
     }
 
