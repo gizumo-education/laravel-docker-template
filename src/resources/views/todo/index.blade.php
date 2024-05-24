@@ -11,7 +11,6 @@
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
 <body>
-  @dd($todoList)
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
       <div class="container">
@@ -37,6 +36,11 @@
                 ToDo一覧
               </div>
               <div class="list-group list-group-flush">
+                @foreach ($todoList as $todo)
+                  <div class="d-flex align-items-center p-2">
+                    <span class="col-9">{{ $todo->content }}</span>
+                  </div>
+                @endforeach
               </div>
             </div>
           </div>
