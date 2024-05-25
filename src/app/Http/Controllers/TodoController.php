@@ -15,4 +15,13 @@ class TodoController extends Controller
 
         return view('todo.index', ['todoList' => $todoList]);
     }
+
+    public function create()
+    {
+        $todo = new Todo();
+        $todoList = $todo->all();
+
+        return view('todo.create', ['todoList' => $todoList]);
+    }
+
 }
