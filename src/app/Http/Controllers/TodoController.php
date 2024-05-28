@@ -60,4 +60,11 @@ class TodoController extends Controller
         $todo = $this->todo->find($id);
         return view('todo.show', ['todo' => $todo]);
     }
+
+    public function delete($id)
+    {
+        $todo = $this->todo->find($id);
+        $todo->delete();
+        return redirect()->route('todo.index');
+    }
 }
