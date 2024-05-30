@@ -14,7 +14,7 @@
 </head>
 <body>
   <div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <!-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
       <div class="container">
         <a class="navbar-brand" href="/todo">ToDo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -26,9 +26,11 @@
           <ul class="navbar-nav ml-auto"></ul>
         </div>
       </div>
-    </nav>
+    </nav> -->
     <main class="py-4">
       <div class="container">
+      @extends('layouts.base')
+      @section('content')
         <div class="row justify-content-center">
           <div class="col-md-8">
             <div class="card">
@@ -51,6 +53,7 @@
             </div>
           </div>
         </div>
+        @endsection
       </div>
     </main>
   </div>
