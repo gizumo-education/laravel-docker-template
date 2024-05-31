@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
 use App\Todo;
+
+use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
@@ -12,32 +12,34 @@ class TodoController extends Controller
     {
         $todo = new Todo();
         $todoList = $todo->all();
+        // dd($todoList);
 
-        return view('todo.index', ['todoList' => $todoList]);
+        return view('todo.index', ['todos' => $todoList]);
     }
 
     public function create()
     {
-        $todo = new Todo();
-        $todoList = $todo->all();
-
-        return view('todo.create', ['todoList' => $todoList]);
-    }
-
-    public function store()
-    {
-        dd('新規作成のルート実行！');
+       return view('todo.create');
     }
 
     public function store(Request $request)
     {
-        $content = $request->input('content');
+        $inputs = $request->all();
 
-        $todo = new Todo(); 
-        $todo->content = $content;
+        $todo = new Todo();
+        $todo->fill($inputs);
         $todo->save();
 
         return redirect()->route('todo.index');
     }
 
+    public function show($id)
+    {
+        // dd($id);
+        $todo = new Todo();
+        $targetTodo = $todo->find($id);
+
+        return view('todo.show', ['todo' => $targetTodo]);
+    }
 }
+
