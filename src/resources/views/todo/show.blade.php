@@ -1,6 +1,9 @@
 @extends('layouts.base')
 @section('content')
 <div class="row justify-content-center">
+  <div class="col-auto">
+    <a href="{{ route('todo.edit', $todo->id) }}" class="btn btn-info">編集する</a>
+  </div>
   <div class="col-md-8">
     <div class="card">
       <div class="card-header">
