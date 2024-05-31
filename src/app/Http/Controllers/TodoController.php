@@ -8,10 +8,11 @@ use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
+    private $todo;
+
     public function index()
     {
-        $todo = new Todo();
-        $todoList = $todo->all();
+        $todoList = $this->todo->all();
         // dd($todoList);
 
         return view('todo.index', ['todos' => $todoList]);
@@ -26,9 +27,8 @@ class TodoController extends Controller
     {
         $inputs = $request->all();
 
-        $todo = new Todo();
-        $todo->fill($inputs);
-        $todo->save();
+        $this->todo->fill($inputs);
+        $this->todo->save();
 
         return redirect()->route('todo.index');
     }
@@ -36,10 +36,13 @@ class TodoController extends Controller
     public function show($id)
     {
         // dd($id);
-        $todo = new Todo();
-        $targetTodo = $todo->find($id);
+        $todo = $this->todo->find($id);
+        return view('todo.show', ['todo' => $todo]);
+    }
 
-        return view('todo.show', ['todo' => $targetTodo]);
+    public function __construct(Todo $todo)
+    {
+        $this->todo = $todo;
     }
 }
 
