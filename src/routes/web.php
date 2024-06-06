@@ -15,12 +15,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/todo', function () {
-//     echo 'Hello World!';
-// });
-
-Route::get('/todo', 'TodoController@index');
-Route::get('/todo/create', 'TodoController@create');
-Route::get('/todo/create', 'TodoController@create')->name('todo.create');
-Route::post('/todo', 'TodoController@store')->name('todo.store');
+// 一覧表示のルート定義(TodoControllerクラスのindexメソッド)
+// 名前付きルートでtodo.indexとする
 Route::get('/todo', 'TodoController@index')->name('todo.index');
+
+// 新規作成のルート定義(TodoControllerクラスのcreateメソッド)
+// 名前付きルートでtodo.createとする
+Route::get('/todo/create', 'TodoController@create')->name('todo.create');
+
+// 新規作成のルート定義(TodoControllerクラスのstoreメソッド)
+// ToDoを新規作成するルートのため、HTTPメソッドはPOST
+// 名前付きルートでtodo.storeとする
+Route::post('/todo', 'TodoController@store')->name('todo.store');

@@ -14,7 +14,8 @@
 </head>
 <body>
   <div id="app">
-    <!-- <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+    <!--
+    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
       <div class="container">
         <a class="navbar-brand" href="/todo">ToDo</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
@@ -26,10 +27,13 @@
           <ul class="navbar-nav ml-auto"></ul>
         </div>
       </div>
-    </nav> -->
+    </nav>
+    -->
     <main class="py-4">
       <div class="container">
+      <!-- 継承する親Bladeを指定 -->
       @extends('layouts.base')
+      <!-- 親Blade(base.blade.php)に継承する -->
       @section('content')
         <div class="row justify-content-center">
           <div class="col-md-8">
@@ -37,6 +41,7 @@
               <div class="card-header">ToDo作成</div>
               <div class="card-body">
                 <form method="post" action="{{ route('todo.store') }}">
+                <!-- CSRF対策 -->
                 @csrf
                   <div class="form-group row">
                     <label for="name" class="col-md-4 col-form-label text-md-right">ToDo入力</label>
