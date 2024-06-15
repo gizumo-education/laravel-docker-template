@@ -8,13 +8,21 @@ use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
+    private $todo;
+
+    public function __construct(Todo $todo)
+    {
+        $this->todo = $todo;
+    }
+
     // 一覧画面の表示
     public function index()
     {
         // TodoControllerでTodoModelを使えるように、インスタンス化
-        $todo = new Todo();
+        // $todo = new Todo();
         // todosテーブルから全てのレコードを取得することができる
-        $todoList = $todo->all();
+        // $todoList = $todo->all();
+        $todoList = $this->todo->all();
 
         // view関数を使って取得したデータをHTMLファイルに渡す
         // 第1引数：表示したいbladeファイルを指定
@@ -48,11 +56,13 @@ class TodoController extends Controller
         // $todo->content = $inputs['content'];
         // ----------------------------------------------------
         // Todoインスタンスの各プロパティに一括で代入
-        $todo->fill($inputs);
+        // $todo->fill($inputs);
+        $this->todo->fill($inputs);
 
 
         // 3. Todoインスタンスの->save()を実行してオブジェクトの状態をDBに保存するINSERT文を実行
-        $todo->save();
+        // $todo->save();
+        $this->todo->save();
 
         // 一覧画面にリダイレクトする処理
         return redirect()->route('todo.index');// 追記
@@ -60,8 +70,9 @@ class TodoController extends Controller
 
     public function show($id)
     {
-        $model = new Todo();
-        $todo = $model->find($id);
+        // $model = new Todo();
+        // $todo = $model->find($id);
+        $todo = $this->todo->find($id);
 
         return view('todo.show', ['todo' => $todo]);
     }
