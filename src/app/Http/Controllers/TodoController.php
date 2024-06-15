@@ -48,7 +48,7 @@ class TodoController extends Controller
 
 
         // 1. todosテーブルの1レコードを表すTodoクラスをインスタンス化
-        $todo = new Todo();
+        // $todo = new Todo();
 
 
         // 2. Todoインスタンスのカラム名のプロパティに保存したい値を代入
@@ -82,5 +82,15 @@ class TodoController extends Controller
         $todo = $this->todo->find($id);
 
         return view('todo.edit', ['todo' => $todo]);
+    }
+
+    public function update(Request $request, $id) // 第1引数: リクエスト情報の取得　第2引数: ルートパラメータの取得
+    {
+        // TODO: リクエストされた値を取得
+        $inputs = $request->all();
+        $todo = $this->todo->find($id);
+        $todo->fill($inputs)->save();
+
+        return redirect()->route('todo.show', $todo->id);
     }
 }
