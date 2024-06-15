@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-// 追加
+
+use App\Http\Requests\TodoRequest; // 追加
 use App\Todo;
-// 追記
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
@@ -37,7 +37,7 @@ class TodoController extends Controller
 
     // 新規作成機能
     // メソッドインジェクション：メソッドの引数の左側にクラス名を書くことで、インスタンス化が自動で行われる
-    public function store(Request $request)
+    public function store(TodoRequest $request)
     {
         // フォームから送信されたToDoの内容を取得
         // 値を取得したい入力欄のname属性を指定
@@ -84,7 +84,7 @@ class TodoController extends Controller
         return view('todo.edit', ['todo' => $todo]);
     }
 
-    public function update(Request $request, $id) // 第1引数: リクエスト情報の取得　第2引数: ルートパラメータの取得
+    public function update(TodoRequest $request, $id) // 第1引数: リクエスト情報の取得　第2引数: ルートパラメータの取得
     {
         // TODO: リクエストされた値を取得
         $inputs = $request->all();

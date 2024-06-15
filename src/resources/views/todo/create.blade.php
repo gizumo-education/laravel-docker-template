@@ -13,7 +13,10 @@
             <div class="form-group row">
               <label for="name" class="col-md-4 col-form-label text-md-right">ToDo入力</label>
               <div class="col-md-6">
-                <input type="text" class="form-control" name="content" value="">
+                <input type="text" class="form-control @if($errors->has('content')) border-danger @endif" name="content" value="">
+                @if($errors->has('content'))
+                  <span class="text-danger">{{ $errors->first('content') }}</span>
+                @endif
               </div>
             </div>
             <div class="form-group row mb-0">
