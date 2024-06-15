@@ -27,3 +27,5 @@ Route::get('/todo/create', 'TodoController@create')->name('todo.create');
 // ToDoを新規作成するルートのため、HTTPメソッドはPOST
 // 名前付きルートでtodo.storeとする
 Route::post('/todo', 'TodoController@store')->name('todo.store');
+
+Route::get('/todo/{id}', 'TodoController@show')->name('todo.show');

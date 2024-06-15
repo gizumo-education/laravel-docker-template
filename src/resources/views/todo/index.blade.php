@@ -1,62 +1,25 @@
-<!-- ここから -->
-<!doctype html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>{{ config('app.name', 'Laravel') }}</title>
-  <link rel="dns-prefetch" href="//fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-  <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-</head>
-<body>
-  <!-- 追加 -->
-  <div id="app">
-    <!--
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-      <div class="container">
-        <a class="navbar-brand" href="/todo">ToDo</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto"></ul>
-          <ul class="navbar-nav ml-auto"></ul>
+<!-- 継承する親Bladeを指定 -->
+@extends('layouts.base')
+<!-- 親Blade(base.blade.php)に継承する -->
+@section('content')
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <p class="text-left">
+        <a class="btn btn-success" href="{{ route('todo.create') }}">ToDoを追加</a>
+      </p>
+      <div class="card">
+        <div class="card-header">
+          ToDo一覧
         </div>
-      </div>
-    </nav>
-    -->
-    <main class="py-4">
-      <div class="container">
-      <!-- 継承する親Bladeを指定 -->
-      @extends('layouts.base')
-      <!-- 親Blade(base.blade.php)に継承する -->
-      @section('content')
-        <div class="row justify-content-center">
-          <div class="col-md-8">
-            <p class="text-left">
-              <a class="btn btn-success" href="{{ route('todo.create') }}">ToDoを追加</a>
-            </p>
-            <div class="card">
-              <div class="card-header">
-                ToDo一覧
-              </div>
-              <div class="list-group list-group-flush">
-                @foreach ($todoList as $todo)
-                  <div class="d-flex align-items-center p-2">
-                    <span class="col-9">{{ $todo->content }}</span>
-                  </div>
-                @endforeach
-              </div>
+        <div class="list-group list-group-flush">
+          @foreach ($todoList as $todo)
+            <div class="d-flex align-items-center p-2">
+              <span class="col-9">{{ $todo->content }}</span>
+              <a href="{{ route('todo.show', $todo->id) }}" class="btn btn-info ml-3">詳細</a>
             </div>
-          </div>
+          @endforeach
         </div>
-      @endsection
       </div>
-    </main>
+    </div>
   </div>
-</body>
-</html>
-<!-- ここまで -->
+@endsection
