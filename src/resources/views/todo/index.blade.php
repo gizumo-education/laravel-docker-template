@@ -1,6 +1,4 @@
-<!-- 継承する親Bladeを指定 -->
 @extends('layouts.base')
-<!-- 親Blade(base.blade.php)に継承する -->
 @section('content')
   <div class="row justify-content-center">
     <div class="col-md-8">

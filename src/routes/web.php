@@ -15,23 +15,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// 一覧表示のルート定義(TodoControllerクラスのindexメソッド)
-// 名前付きルートでtodo.indexとする
+// 一覧表示
 Route::get('/todo', 'TodoController@index')->name('todo.index');
 
-// 新規作成のルート定義(TodoControllerクラスのcreateメソッド)
-// 名前付きルートでtodo.createとする
+// 新規作成画面
 Route::get('/todo/create', 'TodoController@create')->name('todo.create');
 
-// 新規作成のルート定義(TodoControllerクラスのstoreメソッド)
-// ToDoを新規作成するルートのため、HTTPメソッドはPOST
-// 名前付きルートでtodo.storeとする
+// 新規作成処理
 Route::post('/todo', 'TodoController@store')->name('todo.store');
 
+// 詳細表示画面
 Route::get('/todo/{id}', 'TodoController@show')->name('todo.show');
 
+// 編集画面
 Route::get('/todo/{id}/edit', 'TodoController@edit')->name('todo.edit');
 
+// 更新処理
 Route::put('/todo/{id}', 'TodoController@update')->name('todo.update');
 
+// 削除処理
 Route::delete('/todo/{id}/show', 'TodoController@delete')->name('todo.delete');
