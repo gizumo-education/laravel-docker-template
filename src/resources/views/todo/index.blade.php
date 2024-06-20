@@ -13,7 +13,6 @@
 </head>
 
 <body>
-  @dd($todoList)
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
       <div class="container">
@@ -31,11 +30,19 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8">
+            <p class="text-left">
+              <a href="http://localhost:8080/todo/create" class="btn btn-success">Todoを追加</a>
+            </p>
             <div class="card">
               <div class="card-header">
                 ToDo一覧
               </div>
               <div class="list-group list-group-flush">
+                @foreach ($todoList as $todo)
+                <div class="d-flex align-items-center p-2">
+                  <span class="col-9">{{ $todo->content }}</span>
+                </div>
+                @endforeach
               </div>
             </div>
           </div>
