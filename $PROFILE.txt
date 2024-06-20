@@ -1,0 +1,2 @@
+[Console]::OutputEncoding = [System.Text.Encoding]::GetEncoding("utf-8")
+$ENV:LESSCHARSET = "utf-8"

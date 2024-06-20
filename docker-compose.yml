@@ -1,7 +1,7 @@
 version: '3'
 services:
 
-  mysql:
+  db:
     image: mysql:8.0
     volumes:
       - mysql:/var/lib/mysql
@@ -20,6 +20,6 @@ services:
     ports:
       - 8080:80
     depends_on:
-      - mysql
+      - db
 volumes:
   mysql:
