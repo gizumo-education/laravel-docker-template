@@ -12,6 +12,7 @@ class TodoController extends Controller
     {
         $todo = new Todo();
         $todoList = $todo->all();
+        // dd($todo);
 
         return view('todo.index',['todoList' => $todoList]);
     }
