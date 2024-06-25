@@ -34,4 +34,4 @@ Route::get('/todo/{id}/edit', 'TodoController@edit')->name('todo.edit');
 Route::put('/todo/{id}', 'TodoController@update')->name('todo.update');
 
 // 削除処理
-Route::delete('/todo/{id}/show', 'TodoController@delete')->name('todo.delete');
+Route::delete('/todo/{id}', 'TodoController@delete')->name('todo.delete');
