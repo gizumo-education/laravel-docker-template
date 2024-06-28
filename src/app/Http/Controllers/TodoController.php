@@ -19,4 +19,18 @@ class TodoController extends Controller
 {
     return view('todo.create'); 
 }
+
+public function store(Request $request) // 追記
+{
+    $content = $request->input('content'); // 追記
+
+    $todo = new Todo(); 
+
+    $todo->content = $content;
+
+    $todo->save();
+
+    return redirect()->route('todo.index');
+}
+
 }
