@@ -1,6 +1,4 @@
-version: '3'
 services:
-
   app:
     build: ./php
     volumes:
@@ -10,7 +8,6 @@ services:
       - 8080:80
     depends_on:
       - db
-
   db:
     image: mysql:8.0
     volumes:
@@ -21,6 +18,5 @@ services:
       - MYSQL_ROOT_PASSWORD=secret
       - MYSQL_DATABASE=laravel_app
       - LANG=C.UTF-8
-
 volumes:
   db:
