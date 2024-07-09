@@ -11,6 +11,7 @@ class TodoSeeder extends Seeder
      */
     public function run()
     {
+        //テーブルのデータを削除
         DB::table('todos')->truncate();
 
         $testData = [
@@ -26,6 +27,7 @@ class TodoSeeder extends Seeder
             ],
         ];
 
+        //テーブルにデータを追加
         DB::table('todos')->insert($testData);
     }
 }

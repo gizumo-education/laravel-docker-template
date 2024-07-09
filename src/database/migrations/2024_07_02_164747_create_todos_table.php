@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateTodosTable extends Migration
 {
+    //データベースにテーブル、カラムまたはインデックスを追加
     /**
      * Run the migrations.
      *
@@ -20,6 +21,7 @@ class CreateTodosTable extends Migration
         });
     }
 
+    //テーブルを削除
     /**
      * Reverse the migrations.
      *
