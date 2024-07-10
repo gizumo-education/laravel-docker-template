@@ -58,9 +58,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     protected function mapWebRoutes()
     {
-        Route::middleware('web')
-             ->namespace($this->namespace)
-             ->group(base_path('routes/web.php'));
+        Route::middleware('web')//Route::middlwereの処理はmiddlewara内のkkernel.php内webの処理をやっている。セッション状態の管理、CSRF保護などが含まれている
+             ->namespace($this->namespace)//controllerのファイルのあるパス指定している。
+             ->group(base_path('routes/web.php'));//base_pathでプロジェクトルート（appまで）を取得（ディレクトリの流れを取得している）これでファイルの流れを理解してくれてその中の第一引数に指定されているrouteファイル内を読み込んでweb.phpを読み込んでいる。
     }
 
     /**
