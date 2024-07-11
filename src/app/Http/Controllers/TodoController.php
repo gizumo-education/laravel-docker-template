@@ -7,12 +7,18 @@ use App\Todo;
 
 class TodoController extends Controller
 {
+    private $todo;  //ここのクラス内でのみ使えるプロパティ
+
+    public function __construct(Todo $todo)
+    {
+        $this->todo = $todo; 
+    }
+
     public function index()
     {
-        $todo = new Todo();
-        $todoList = $todo->all();//todosテーブル内のcontentカラムに登録されている文字列をオールメソッドですべて取得してcollectionメソッドでは配列として並べて取得している
+        $todos = $this->todo->all();
         
-        return view('todo.index',['todoList' => $todoList]);//todoList配列をtodo.indexに渡している。
+        return view('todo.index',['todos' => $todos]);//todoList配列をtodo.indexに渡している。
     }
 
     public function create()
@@ -24,16 +30,14 @@ public function store(Request $request) //メソッドインジェクション�
 {
         $inputs = $request->all(); //フォームで入れられた入力値だけが入ってる　トークンと文字列
         
-        $todo = new Todo(); 
-        $todo->fill($inputs); 
-        $todo->save(); 
+        $this->todo->fill($inputs); 
+        $this->todo->save();
 
         return redirect()->route('todo.index'); 
 }
 public function show($id)
 {
-    $model = new Todo();
-    $todo = $model->find($id);
+    $todo = $this->todo->find($id);
 
     return view('todo.show', ['todo' => $todo]);
 }
