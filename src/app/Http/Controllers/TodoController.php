@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Todo;
 
+use function PHPUnit\Framework\returnSelf;
+
 class TodoController extends Controller
 {
     private $todo;  //ここのクラス内でのみ使えるプロパティ
@@ -40,5 +42,11 @@ public function show($id)
     $todo = $this->todo->find($id);
 
     return view('todo.show', ['todo' => $todo]);
+}
+
+public function edit($id)
+{
+    $todo = $this->todo->find($id);
+    return view('todo.edit',['todo'=>$todo]);
 }
 }
