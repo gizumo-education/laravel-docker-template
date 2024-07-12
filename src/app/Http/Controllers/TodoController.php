@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Todo;
 
 class TodoController extends Controller
 {
@@ -10,7 +11,7 @@ class TodoController extends Controller
     {
 
         $todo = new Todo();
-        $todoList = $todo->all();
+        $todos = $todo->all();
 
         return view('todo.index', ['todos' => $todos]);
     }
