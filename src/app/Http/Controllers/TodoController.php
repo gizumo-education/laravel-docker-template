@@ -42,6 +42,5 @@ class TodoController extends Controller
         
         //一覧画面にリダイレクト
         return redirect()->route('todo.index');
-
     }
 }
