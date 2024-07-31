@@ -7,6 +7,7 @@ use App\Todo;
 
 class TodoController extends Controller
 {
+
     public function index()
     {
         $todo = new Todo();
@@ -24,7 +25,7 @@ class TodoController extends Controller
     public function store(Request $request)
     {
         $inputs = $request->all();
-        dd($inputs);
+        // dd($inputs);
 
         $todo = new Todo();
         $todo->fill($inputs);
