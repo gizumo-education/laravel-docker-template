@@ -11,6 +11,7 @@
 |
 */
 
-Route::get('/todo', 'TodoController@index');
+$route = Route::get('/todo', 'TodoController@index')->name('todo.index');
+dd($route);
 Route::get('/todo/create', 'TodoController@create')->name('todo.create');
 Route::post('/todo', 'TodoController@store')->name('todo.store');
