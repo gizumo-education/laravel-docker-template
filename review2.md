@@ -3,20 +3,21 @@
 ## Todo編集機能
 
 ### @method('PUT')を記述した行に何が出力されているか
-`<input type="hidden" name="_method" value="PUT">`
+`<input type="hidden" name="_method" value="PUT">`  
   
 ### findメソッドの引数に指定しているIDは何のIDか
-DB内にある呼び出したいレコードのプライマリキー
+DB内にある呼び出したいレコードのプライマリキー  
   
 ### findメソッドで実行しているSQLは何か
-SELECT文
+SELECT文  
   
 ### findメソッドで取得できる値は何か
-対象レコード情報のTodoモデルが格納されたCollectionインスタンス
+対象レコードの情報が配列の形でプロパティに格納されたTodoモデルのインスタンス  
   
 ### saveメソッドは何を基準にINSERTとUPDATEを切り替えているのか
-モデルのインスタンスの$attributesプロパティのプライマリキー(=DBのレコードのプライマリキー)がnullの場合にINSERT、  
-値が格納されている場合にUPDATE文のクエリを実行する
+モデルのインスタンスの`$primaryKey`に値が格納されているかどうかを判定し、`$exists`プロパティにbool値が格納されます。  
+`$exists`が`false`の場合にINSERTクエリを実行し、  
+`true`の場合にUPDATE文のクエリを実行する  
   
 ## Todo論理削除
 
@@ -43,7 +44,7 @@ SELECT文
 
 ### MVCはどういったアーキテクチャか
 *「M =Model」「V =View」「C =Controller」*  
-WEBアプリケーション開発に必要な機能をそれぞれView, Controller, Modelに役割分担することで、開発における分業や機能の保守性の担保を高めることを目的としたアーキテクチャ。  
+WEBアプリケーション開発に必要な機能をそれぞれModel, View, Controllerに役割分担することで、開発における分業や機能の保守性の担保を高めることを目的としたアーキテクチャ。  
 ModelはDBとのやりとりの機能を司り、DBへの格納、更新、抽出、削除等の機能を書き込んでいく。  
 Viewはクライアントへ返す画面(≒HTML)の生成を司る。  
 ControllerはViewとModelの間に存在し、ModelとViewの制御を司る。  
