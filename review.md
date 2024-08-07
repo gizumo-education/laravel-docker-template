@@ -7,7 +7,7 @@
 SELECT * FROM ‘todos’;というSQL文を、記述せずにDB操作を行っている。
 
 ### Todoモデルのallメソッドの返り値は何か
-Collectionインスタンス。
+Collectionインスタンスになる。
 
 ### 配列の代わりにCollectionクラスを使用するメリットは
 map、filter、reduce、pluck、groupByなどのメソッドが標準で準備されており、可読性の高いコードが書けることや、求めたKeyが取得できなかったなど時、nullを返す（エラーメッセージを準備しなくていい場面もあり、そういう時に役立つ）ことが挙げられる。
@@ -17,7 +17,7 @@ map、filter、reduce、pluck、groupByなどのメソッドが標準で準備�
 第二引数は[blade内での変数名 => 代入したい値]と書くことで、連想配列の形でデータを渡すことができる。
 
 例：return view('todo.index', ['todos' => $todos]);
-⇒todoファイル内にあるindex.blade.phpを画面に表示するよう指定し、blade.index.phpにある$todosにはTodocontroller.phpの処理で定義された$todosを代入して渡すよう記述している。
+⇒todoファイル内にあるindex.blade.phpを画面に表示するよう指定し、blade.index.phpにある'todos'という変数にはTodocontroller.phpの処理で定義された$todosを代入して渡すよう記述している。
 
 ### index.blade.phpの$todoList・$todoに代入されているものは何か
 $todoには、$todosの配列データ一つ一つがforeachによって代入されている。（また、現時点で$todoListはまだ定義されていない。）
@@ -60,22 +60,38 @@ saveメソッドは、INSERTやUPDATEの処理を実行している。
 今回の場合、route('todo.index')のため、'todo.index'というルートに対応するURLを生成してリターンし、リダイレクトレスポンスを受け取ったブラウザは指定されたURLのページを表示することになる。（ちなみに'todo.index'というルートの定義はweb.php内にある⇒Route::get('/todo', 'TodoController@index')->name('todo.index');）
 
 ### RequestクラスからFormRequestクラスに変更した理由
+※まだクラスの変更をしていないため、後ほど回答
 
 ### $errorsのhasメソッドの引数・返り値は何か
+※$errorsに関する処理をまだ行っていないため、後ほど回答
 
 ### $errorsのfirstメソッドの引数・返り値は何か
+※$errorsに関する処理をまだ行っていないため、後ほど回答
 
 ## その他
 
 ### テーブル構成をマイグレーションファイルで管理するメリット
+マイグレーションファイルでテーブル構成を管理すると、SQLを知らなくてもPHPのコードでテーブル操作ができることや、マイグレーションファイルをGitで共有することで、開発者同士のテーブル構成を統一して作業ができるといったメリットがある。
+（マイグレーションとは、Laravelにある機能の一つで、DBのテーブルを作成することができる。ちなみに、レコードを作成することができるLaravelの機能はSeederと呼ぶ。）
 
 ### マイグレーションファイルのup()、down()は何のコマンドを実行した時に呼び出されるのか
+upメソッドはDBに新しいテーブルやカラムやインデックスを追加するための処理が書かれており、php artisan migrateと書いてartisanコマンドを実行すると呼び出される。
+一方downメソッドはテーブルを削除するための処理を記述しており、upメソッドの操作とは逆の操作を実装している。php artisan migrate:rollbackと書いてrollbackコマンドを実行すると呼び出される。
 
 ### Seederクラスの役割は何か
+テストデータをtodoテーブルに投入する役割を担っている。
+
+まず、作成したSeederファイルのrunメソッドにテストデータ作成のための処理を記述し、続いてDatabaseSeeder.php でSeederファイルをコールするとSeederが実行されてテストデータがDBに挿入される。
+（また、TodoSeeder.phpのrunメソッドの最初にDB::table('todos')->truncate();と記述しているが、これはテストデータ投入時に開発者間のテストデータに差が出ないようにするために、todoテーブルのレコードを全て削除するよう設定している。）
 
 ### TodoControllerクラスのコンストラクタはどのタイミングで実行されるか
+TodoControllerインスタンスが生成されたタイミングで実行される。
+まずブラウザから/todoに対するリクエストが来た時に、対応したルートを探す。次にTodoControllerのインスタンスが生成され、その時にコンストラクタが実行される。その後、生成されたTodoControllerインスタンスのindexメソッドが実行される。
 
 ### route関数の引数・返り値・使用するメリット
+引数：ルート名を指定する。
+返り値：指定されたルート名を使ったURLを生成して返す。
+メリット：URLに変更があってもルート名に変更がなければ修正箇所がweb.phpのみで済むため、コードの保守性が向上するメリットがある。
 
 ### @extends・@section・@yieldの関係性とbladeを分割するメリット
 
