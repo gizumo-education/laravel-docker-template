@@ -16,11 +16,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// ルート定義は、routes/web.phpに記述する。 // 下記を追加
-
-// Route::get('/todo', function () {
-//     echo 'Hello World!';
-// });
 
 // 上記のを編集(Route::get()の第二引数に対象のControllerとそのメソッドを指定する)
 Route::get('/todo', 'TodoController@index'); // app/Http/Controllers/TodoController.php

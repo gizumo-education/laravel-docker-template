@@ -11,6 +11,11 @@
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
 <body>
+  <!-- bladeファイルはテンプレートエンジンの一つで、HTMLに比べて簡単に様々な機能を実施 -->
+  <!-- 追加 -->
+  <!-- dd($helloWorld) -->
+    
+    <!-- 追加 -->
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
       <div class="container">
@@ -32,8 +37,12 @@
               <div class="card-header">
                 ToDo一覧
               </div>
-              <div class="list-group list-group-flush">
-              </div>
+              <div class="list-group list-group-flush"></div>
+                @foreach ($todos as $todo)
+                  <div class="d-flex align-items-center p-2">
+                    <span class="col-9">{{ $todo->content }}</span>
+                  </div>
+                @endforeach
             </div>
           </div>
         </div>
