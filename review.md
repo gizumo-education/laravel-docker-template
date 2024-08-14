@@ -7,10 +7,10 @@
 SELECT * FROM ‘todos’;というSQL文を、記述せずにDB操作を行っている。
 
 ### Todoモデルのallメソッドの返り値は何か
-Collectionインスタンスになる。
+Collectionインスタンスが返り値になる。
 
 ### 配列の代わりにCollectionクラスを使用するメリットは
-map、filter、reduce、pluck、groupByなどのメソッドが標準で準備されており、可読性の高いコードが書けることや、求めたKeyが取得できなかったなど時、nullを返す（エラーメッセージを準備しなくていい場面もあり、そういう時に役立つ）ことが挙げられる。
+Collectionクラスには、map、filter、reduce、pluck、groupByなどのメソッドが標準で準備されていて可読性の高いコードが書けることや、求めたKeyが取得できなかった時などにnullを返す（エラーメッセージを準備しなくていい場面で活用できる）ことがメリットとして挙げられる。
 
 ### view関数の第1・第2引数の指定と何をしているか
 第一引数で画面に表示したいbladeファイルを指定し、
@@ -20,7 +20,7 @@ map、filter、reduce、pluck、groupByなどのメソッドが標準で準備�
 ⇒todoファイル内にあるindex.blade.phpを画面に表示するよう指定し、blade.index.phpにある'todos'という変数にはTodocontroller.phpの処理で定義された$todosを代入して渡すよう記述している。
 
 ### index.blade.phpの$todoList・$todoに代入されているものは何か
-$todoには、$todosの配列データ一つ一つがforeachによって代入されている。（また、現時点で$todoListはまだ定義されていない。）
+$todoには、$todosの配列データ一つ一つがforeachによって代入されている。（また、現時点で$todoListは定義されていない。）
 
 ## Todo作成機能
 
@@ -45,7 +45,7 @@ fillメソッドは、連想配列の形で値を指定すると、複数のカ�
 一括代入を許可する属性を指定するために設定している。
 
 例えば、$inputsに格納された連想配列のデータが、
-['content' => 'りんご', ‘other’=>’おはよう’]だった場合、$todo->fill($inputs)の処理によって $todo->content には 'りんご' が設定されるが、$todo->otherは無視される（$fillableにotherという属性は含まれていないため許可されない）。
+[ 'content' => 'りんご', ‘other’ => ’おはよう’ ]だった場合、$todo->fill($inputs)の処理によって $todo->content には 'りんご' が設定されるが、$todo->otherは無視される（$fillableにotherという属性は含まれていないため許可されない）。
 また、一括代入をマス・アサインメントと呼ぶこともある。
 
 ### saveメソッドで実行しているSQLは何か
@@ -57,7 +57,9 @@ saveメソッドは、INSERTやUPDATEの処理を実行している。
 まずredirect関数を引数なしで呼び出し、結果としてリダイレクタインスタンスが返る。
 続いて、リダイレクタインスタンスのメソッドが呼び出せるようになり、routeメソッドを使うことで名前付きルートに対するURLを生成できる。
 
-今回の場合、route('todo.index')のため、'todo.index'というルートに対応するURLを生成してリターンし、リダイレクトレスポンスを受け取ったブラウザは指定されたURLのページを表示することになる。（ちなみに'todo.index'というルートの定義はweb.php内にある⇒Route::get('/todo', 'TodoController@index')->name('todo.index');）
+今回の場合、route('todo.index')のため、'todo.index'というルートに対応するURLを生成してリターンし、リダイレクトレスポンスを受け取ったブラウザは指定されたURLのページを表示することになる。
+（'todo.index'というルートの定義はweb.php内にある
+⇒Route::get('/todo', 'TodoController@index')->name('todo.index');）
 
 ### RequestクラスからFormRequestクラスに変更した理由
 ※まだクラスの変更をしていないため、後ほど回答
