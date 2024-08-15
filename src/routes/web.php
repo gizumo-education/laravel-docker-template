@@ -21,3 +21,5 @@ Route::get('/todo/{id}', 'TodoController@show')->name('todo.show');
 Route::get('/todo/{id}/edit', 'TodoController@edit')->name('todo.edit');
 
 Route::post('/todo', 'TodoController@store')->name('todo.store');
+
+Route::put('/todo/{id}', 'TodoController@update')->name('todo.update');
