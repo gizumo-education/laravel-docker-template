@@ -20,6 +20,18 @@ Route::get('/', function () {
 Route::get('/todo', 'TodoController@index'); // app/Http/Controllers/TodoController.php
 
 
-Route::get('/todo/create', 'TodoController@create');
+Route::get('/todo/create', 'TodoController@create'); // ボタンを押した後に、ルートを実行する
 
-// http://localhost:8080/todo にアクセスしたときに、「Hello World!」と画面に表示する
+
+Route::get('/todo/create', 'TodoController@create')->name('todo.create'); // 追記 // ルートに名前を付ける
+
+// Route::get ... ルートを定義するメソッド（getは「GETリクエスト」を意味しており、ウェブページを取得するために使います）
+
+// /todo/create ... これは「URLのパス」を指定をしている。http://localhost:8080/todo/create というアドレスにアクセスすることで、このルートが呼び出される。
+
+// TodoController@create ... 「コントローラーとメソッド」を指定します。
+// TodoController というコントローラーの create メソッドが呼び出されます。
+
+// ->name('todo.create') ... 「名前付きルート」の設定です。ルートに名前 todo.create を付けることで、後でこのルートを簡単に参照することができます。
+
+// http://localhost:8080/todo
