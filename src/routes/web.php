@@ -17,7 +17,7 @@ Route::get('/', function () {
 });
 
 // 上記のを編集(Route::get()の第二引数に対象のControllerとそのメソッドを指定する)
-Route::get('/todo', 'TodoController@index'); // app/Http/Controllers/TodoController.php
+Route::get('/todo', 'TodoController@index')->name('todo.index'); ; // app/Http/Controllers/TodoController.php
 
 
 Route::get('/todo/create', 'TodoController@create'); // ボタンを押した後に、ルートを実行する
@@ -34,4 +34,5 @@ Route::get('/todo/create', 'TodoController@create')->name('todo.create'); // 追
 
 // ->name('todo.create') ... 「名前付きルート」の設定です。ルートに名前 todo.create を付けることで、後でこのルートを簡単に参照することができます。
 
-// http://localhost:8080/todo
+// リダイレクト
+Route::post('/todo', 'TodoController@store')->name('todo.store');
