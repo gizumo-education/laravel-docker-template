@@ -9,7 +9,7 @@
 ルート定義で指定したルートパラメータのIDです。
 
 ### findメソッドで実行しているSQLは何か
-SELECT id FROM todos;
+SELECT id FROM todos where id = $id;
 
 ### findメソッドで取得できる値は何か
 指定のIDの値を取得します。
