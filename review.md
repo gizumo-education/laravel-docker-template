@@ -45,5 +45,6 @@ upは、php artisan migrate downはphp artisan migrate:rollback
 ### @csrfは何のための記述か
 クロスサイトリクエストフォージェリ対策をするために、ワンタイムトークンを発行している
 ### {{ }}とは何の省略系か
+PHPのecho文の省略系です。
 blade内でPHPの記述をする際に使用される。この{{}}で囲んであげることでPHPの処理として
 認識される
