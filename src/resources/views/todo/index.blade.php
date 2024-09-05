@@ -33,7 +33,11 @@
                 ToDo一覧
               </div>
               <div class="list-group list-group-flush">
-              </div>
+                @foreach($todos as $todo)
+                  <div class = "d-flex align-items-center p-s">
+                    <span class = "col-9">{{ $todo->content }}</span>
+                  </div>
+                @endforeach
             </div>
           </div>
         </div>
