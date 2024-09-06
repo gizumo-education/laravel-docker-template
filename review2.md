@@ -12,7 +12,7 @@
 SELECT id FROM todos where id = $id;
 
 ### findメソッドで取得できる値は何か
-指定のIDの値を取得します。
+指定のIDで、ルートパラメータで更新するToDoのIDの値です。データ型はint型です。
 
 ### saveメソッドは何を基準にINSERTとUPDATEを切り替えているのか
 INSERT時はTODOインスタンスを代入している、$this->todoから呼び出していましたが、UPDATE時はDBから取得してきたデータを代入している、$todoから呼び出している為、呼び出し元を基準に切り替えています。
@@ -35,9 +35,11 @@ INSERT時はTODOインスタンスを代入している、$this->todoから呼�
 TodoRequest.phpで設定したバリデーションルールを適用させる為です。
 
 ### $errorsのhasメソッドの引数・返り値は何か
+引数はcontentです。
 Illuminate\Support\MessageBagのインスタンスを返しています。
 
 ### $errorsのfirstメソッドの引数・返り値は何か
+引数はcontentです。
 Illuminate\Support\MessageBagのインスタンスを返しています。
 
 ### フレームワークとは何か
@@ -63,4 +65,4 @@ Laravelでは、EloquentのORMを使用しています。
 - チーム開発の時は、composer.lockを共有する
 
 ### composerでインストールしたパッケージ（ライブラリ）はどのディレクトリに格納されるのか
-プロジェクトのルートディレクトリに格納されます。
+srcディレクトリに格納されます。
