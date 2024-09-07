@@ -3,7 +3,7 @@
 ## Todo編集機能
 
 ### @method('PUT')を記述した行に何が出力されているか
-<input type=”hidden” name=”_method” value=”PUT”>という、inputタグが生成されます。
+type=”hidden” name=”_method” value=”PUT”という内容のinputタグが生成されます。
 
 ちなみに、HTMLの仕様でPUTメソッドを使ったリクエストの送信はできないため、@method('PUT')を使用して転送方法を指定しています。
 
