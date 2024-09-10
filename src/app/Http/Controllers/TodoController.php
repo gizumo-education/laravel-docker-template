@@ -28,10 +28,11 @@ class TodoController extends Controller
     {
         // dd('新規作成のルート実行！');
 
-        $content = $request->input('content');
+        $inputs = $request->all();
+        dd($inputs);
 
         $todo = new Todo();
-        $todo->content = $content;
+        $todo->fill($inputs);
         $todo->save();
 
         return redirect()->route('todo.index');
