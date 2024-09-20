@@ -30,7 +30,7 @@ class TodoController extends Controller
         // dd('新規作成のルート実行！');
 
         $inputs = $request->all();
-        dd($inputs);
+        // dd($inputs);
 
         $todo = new Todo();
         $todo->fill($inputs);
