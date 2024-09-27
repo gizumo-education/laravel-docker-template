@@ -46,4 +46,16 @@ class TodoController extends Controller
         // dd($content);
     }
 
+    public function show($id)
+    {
+        // dd($id);
+
+        $model = new Todo();
+        $todo = $model->find($id);
+
+        // dd($todo);
+
+        return view('todo.show', ['todo' => $todo]);
+    }
+
 }
