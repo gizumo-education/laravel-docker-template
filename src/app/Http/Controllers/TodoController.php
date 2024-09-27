@@ -14,7 +14,7 @@ class TodoController extends Controller
         $todo = new Todo();
         $todos = $todo->all();
         // dd($todos);
-        
+
         return view('todo.index', ['todos' => $todos]);
     }
 
@@ -33,6 +33,11 @@ class TodoController extends Controller
         // dd($inputs);
 
         $todo = new Todo();
+        // $todo->content = $inputs['content'];
+
+        // dd($todo);
+        // dd($todo->fill($inputs));
+
         $todo->fill($inputs);
         $todo->save();
 
