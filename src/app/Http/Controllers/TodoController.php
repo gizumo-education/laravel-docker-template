@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TodoRequest;
+
 use App\Todo;
 
-use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
@@ -23,7 +24,7 @@ class TodoController extends Controller
         return view('todo.create');
     }
 
-    public function store(Request $request)
+    public function store(TodoRequest $request)
     {
         // dd('新規作成のルート実行！');
 
@@ -60,7 +61,7 @@ class TodoController extends Controller
         // dd($todo);
     }
 
-    public function update(Request $request, $id) // 第1引数: リクエスト情報の取得　第2引数: ルートパラメータの取得
+    public function update(TodoRequest $request, $id) // 第1引数: リクエスト情報の取得　第2引数: ルートパラメータの取得
     {
         $inputs = $request->all();
         $todo = $this->todo->find($id);
