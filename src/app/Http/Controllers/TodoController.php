@@ -60,4 +60,15 @@ class TodoController extends Controller
         // dd($todo);
     }
 
+    public function update(Request $request, $id) // 第1引数: リクエスト情報の取得　第2引数: ルートパラメータの取得
+    {
+        $inputs = $request->all();
+        $todo = $this->todo->find($id);
+        $todo->fill($inputs)->save();
+
+        // dd($inputs);
+
+        return redirect()->route('todo.show', $todo->id);
+    }
+
 }
