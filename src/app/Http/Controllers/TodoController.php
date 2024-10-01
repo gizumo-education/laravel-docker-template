@@ -6,7 +6,6 @@ use App\Http\Requests\TodoRequest;
 
 use App\Todo;
 
-
 class TodoController extends Controller
 {
     //
@@ -70,6 +69,15 @@ class TodoController extends Controller
         // dd($inputs);
 
         return redirect()->route('todo.show', $todo->id);
+    }
+
+    public function delete($id)
+    {
+        // dd('削除のルート実行！');
+
+        $todo = $this->todo->find($id);
+        $todo->delete();
+        return redirect()->route('todo.index');
     }
 
 }
