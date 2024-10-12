@@ -19,7 +19,7 @@ Route::get('/todo', 'TodoController@index')->name('todo.index');
 Route::get('/todo/create', 'TodoController@create')->name('todo.create');; // 追記
 Route::post('/todo', 'TodoController@store')->name('todo.store');
 Route::get('/todo/{id}', 'TodoController@show')->name('todo.show');
-
+Route::get('/todo/{id}/edit', 'TodoController@edit')->name('todo.edit');
 // Route::get('/todo', function () {
 //     echo 'Hello World!';
 // });

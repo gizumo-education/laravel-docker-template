@@ -27,7 +27,7 @@ class TodoController extends Controller
 
     $todo= $this->todo->fill($inputs);
     $todo->save();
-    
+
     return redirect()-> route('todo.index');
 }
 public function show($id)
@@ -36,7 +36,12 @@ public function show($id)
     $todo = $this->todo->find($id);
     return view('todo.show', ['todo' => $todo]);
 }
-
+public function edit($id)
+{
+    $todo = $this->todo->find($id);
+    // dd($todo);
+    return view('todo.edit', ['todo'=> $todo]);
+}
 
 
 }
