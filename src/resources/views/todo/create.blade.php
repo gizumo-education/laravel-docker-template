@@ -1,6 +1,5 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -13,7 +12,6 @@
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
     integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
-
 <body>
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -33,19 +31,22 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8">
-          <p class="text-left">
-            <a class="btn btn-success" href="http://localhost:8080/todo/create">ToDoを追加</a>
-          </p>
             <div class="card">
-              <div class="card-header">
-                ToDo一覧
-              </div>
-              <div class="list-group list-group-flush">
-              @foreach ($todos as $todo)
-                  <div class="d-flex align-items-center p-2">
-                    <span class="col-9">{{ $todo->content }}</span>
+              <div class="card-header">ToDo作成</div>
+              <div class="card-body">
+                <form method="" action="">
+                  <div class="form-group row">
+                    <label for="name" class="col-md-4 col-form-label text-md-right">ToDo入力</label>
+                    <div class="col-md-6">
+                      <input type="text" class="form-control" name="content" value="">
+                    </div>
                   </div>
-                @endforeach
+                  <div class="form-group row mb-0">
+                    <div class="col-md-6 offset-md-4">
+                      <button type="submit" class="btn btn-primary">作成</button>
+                    </div>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
@@ -54,5 +55,4 @@
     </main>
   </div>
 </body>
-
 </html>
