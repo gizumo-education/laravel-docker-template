@@ -6,12 +6,14 @@ use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
+    private $todo;
+    public function __construct(Todo $todo)
+    {
+        $this->todo = $todo;
+    }
     public function index()
     {
-        $todo = new Todo();
-        $todos = $todo->all();
-        // dd($todos);
-
+        $todos = $this->todo->all();
          return view('todo.index', ['todos' => $todos]); // 修正
     }
     public function create()
@@ -22,23 +24,16 @@ class TodoController extends Controller
     public function store(Request $request)
 {
     $inputs = $request->all();
-    // dd($input);
 
-    // 1. todosテーブルの1レコードを表すTodoクラスをインスタンス化
-    $todo = new Todo(); 
-    // 2. Todoインスタンスのカラム名のプロパティに保存したい値を代入
-    $todo->fill($inputs);
-    // 3. Todoインスタンスの`->save()`を実行してオブジェクトの状態をDBに保存するINSERT文を実行
+    $todo= $this->todo->fill($inputs);
     $todo->save();
-
+    
     return redirect()-> route('todo.index');
 }
 public function show($id)
 {
     // dd($id);
-    $model = new Todo();
-    $todo = $model->find($id);
-
+    $todo = $this->todo->find($id);
     return view('todo.show', ['todo' => $todo]);
 }
 
