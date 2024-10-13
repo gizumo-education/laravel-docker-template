@@ -13,6 +13,7 @@
               <input type="text" class="form-control @if($errors->has('content')) border-danger @endif" name="content"
                 value="">
               @if($errors->has('content'))
+                <!-- {{ dd($errors) }} -->
                 <span class="text-danger">{{ $errors->first('content') }}</span>
               @endif
             </div>

@@ -54,5 +54,13 @@ public function update(TodoRequest $request, $id) // 第1引数: リクエスト
     return redirect()->route('todo.show', $todo->id);
 }
 
+public function delete($id)
+{
+    $todo = $this->todo->find($id);
+    // dd($todo);
+    $todo->delete();
+    return redirect()->route('todo.index',);
+}
+
 
 }
