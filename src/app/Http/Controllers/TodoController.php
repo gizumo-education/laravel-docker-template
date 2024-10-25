@@ -63,6 +63,7 @@ class TodoController extends Controller
     public function update(TodoRequest $request, $id) // 第1引数: リクエスト情報の取得　第2引数: ルートパラメータの取得
     {
         $inputs = $request->all();
+        // dd($inputs);
         $todo = $this->todo->find($id);
         $todo->fill($inputs)->save();
 
