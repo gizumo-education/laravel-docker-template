@@ -9,14 +9,62 @@ services:
     depends_on:
       - db
   db:
-    image: mysql:8.0
-    volumes:
+    image: mysql:8.0 # MySQLの箱: データを保存するための特別なソフトウェア。
+    volumes: # データのスペース: データを安全に保存するための場所。
       - db:/var/lib/mysql
-    ports:
+    ports: # ポート: 外から箱にアクセスするためのドア。
       - 3306:3306
-    environment:
+    environment: # 設定: 箱の鍵や中の棚をどうするか決めること。
       - MYSQL_ROOT_PASSWORD=secret
       - MYSQL_DATABASE=laravel_app
       - LANG=C.UTF-8
 volumes:
   db:
+
+
+# --- memo ----
+# MySQL というデータベースを使うための準備をするためのファイル
+
+# 1.下記はdbの箱の名前 = MySQLの箱を準備する
+# db:
+# image: mysql:8.0
+
+# image: mysql:8.0 は、「MySQLという名前の箱を8.0というバージョンで作るよ」という意味です。
+# これはデータを保存するための特別なソフトウェア
+
+# ---
+
+# 2.データを保存するためのスペースを確保する
+# volumes:
+# - db:/var/lib/mysql
+
+# volumes は、「この箱のデータを特別な場所に保存するよ」と言っています。
+# db:/var/lib/mysql で、コンピュータの特別な場所 (db) にデータを保存します。
+# これで、箱を壊してもデータが消えないようにしています。
+
+# ---
+
+# 3.他のプログラムと連携するためにポートを開ける
+# ports:
+#   - 3306:3306
+
+# ports は、「この箱を開けて、外からアクセスできるようにするよ」という設定です。
+# 3306:3306 は、コンピュータのポート3306をこの箱に繋げて、データにアクセスできるようにしています。
+
+# ---
+
+# 4.箱の設定をする
+# environment:
+#   - MYSQL_ROOT_PASSWORD=secret
+#   - MYSQL_DATABASE=laravel_app
+#   - LANG=C.UTF-8
+
+# environment は、箱の中の設定をするためのもの
+
+# MYSQL_ROOT_PASSWORD=secret は、「この箱の鍵（パスワード）は secret だよ」という意味です。
+# これで、箱を開けるためにはこのパスワードが必要です。
+
+# MYSQL_DATABASE=laravel_app は、「この箱の中に laravel_app という名前の棚（データベース）を作るよ」という意味です。
+# アプリケーションがデータをここに保存します。
+
+# LANG=C.UTF-8 は、箱の中で使う言語の設定です。
