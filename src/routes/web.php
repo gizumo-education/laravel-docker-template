@@ -20,3 +20,4 @@ Route::get('/todo', 'TodoController@index')->name('todo.index');
 Route::get('/todo/create', 'TodoController@create')->name('todo.create');
 Route::post('/todo', 'TodoController@store')->name('todo.store');
 Route::get('/todo/{id}', 'TodoController@show')->name('todo.show');//ルートパラメータ｛｝内の変数
+Route::get('/todo/{id}/edit', 'TodoController@edit')->name('todo.edit');

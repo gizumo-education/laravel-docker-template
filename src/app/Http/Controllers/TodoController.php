@@ -7,12 +7,12 @@ use App\Todo;
 
 class TodoController extends Controller
 {
-    //private $todo;//TodoControllerのクラスプロパティ
+    private $todo;//TodoControllerのクラスプロパティ
 
-    //public function __construct(Todo $todo)//Todoクラスのインスタンスを生成し、$todoという変数に代入
-    //{
-        //$this->todo = $todo;
-    //}
+    public function __construct(Todo $todo)//Todoクラスのインスタンスを生成し、$todoという変数に代入
+    {
+        $this->todo = $todo;
+    }
 
     public function index()
     {
@@ -41,5 +41,13 @@ class TodoController extends Controller
         $todo = $this->todo->find($id);
         
         return view('todo.show', ['todo' => $todo]);
+    }
+
+    public function edit($id)
+    {
+        // TODO: 編集対象のレコードの情報を持つTodoモデルのインスタンスを取得
+        $todo = $this->todo->find($id);
+        
+        return view('todo.edit', ['todo' => $todo]);
     }
 }
