@@ -14,7 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
-
+//第１にURL、第２に対象のControllerとそのメソッドを指定する。
+//GET:リソースの取得。POST:リソースの新規追加
 Route::get('/todo', 'TodoController@index')->name('todo.index');
 Route::get('/todo/create', 'TodoController@create')->name('todo.create');
 Route::post('/todo', 'TodoController@store')->name('todo.store');
+Route::get('/todo/{id}', 'TodoController@show')->name('todo.show');//ルートパラメータ｛｝内の変数

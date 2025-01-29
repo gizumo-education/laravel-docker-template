@@ -9,27 +9,33 @@ class TodoController extends Controller
 {
     public function index()
     {
-        $todo = new Todo();
-        $todos = $todo->all();
-
+        $todo = new Todo(); //TodoModelのインスタンスを呼び出し
+        $todos = $todo->all(); //$todoに格納されている配列を全て呼び出す
+        //第一引数で指定し、第二引数に渡したいデータを連想配列の形で渡す
         return view('todo.index', ['todos' => $todos]);
     }
 
     public function create()
     {
-        // TODO: 第1引数を指定
-        return view('todo.create'); // 追記
+        return view('todo.create');
     }
 
     public function store(Request $request)
+    { //インスタンス化が自動で行われる。メソッドインジェクション
+        $inputs = $request->all();//フォームから送信された値を個別ではなく一括で取得
+
+        $todo = new Todo();//TodoModelのインスタンスを呼び出し
+        $todo->fill($inputs);//指定した連想配列を一括代入
+        $todo->save();//save()を実行してオブジェクトの状態をDBに保存するINSERT文を実行
+
+        return redirect()->route('todo.index');//処理が終われば、index.phpのページに遷移される。
+    }
+
+    public function show($id)
     {
-        $inputs = $request->all();
-        dd($inputs);
-
-        $todo = new Todo();
-        $todo->fill($inputs);
-        $todo->save();
-
-        return redirect()->route('todo.index');
+        $model = new Todo();
+        $todo = $model->find($id);
+        
+        return view('todo.show', ['todo' => $todo]);
     }
 }
