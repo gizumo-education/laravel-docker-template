@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\TodoRequest;
 use App\Todo;
 
 class TodoController extends Controller
@@ -26,10 +26,9 @@ class TodoController extends Controller
         return view('todo.create');
     }
 
-    public function store(Request $request)
+    public function store(TodoRequest $request)
     { //インスタンス化が自動で行われる。メソッドインジェクション
         $inputs = $request->all();//フォームから送信された値を個別ではなく一括で取得
-
         $this->todo->fill($inputs);//指定した連想配列を一括代入
         $this->todo->save();//save()を実行してオブジェクトの状態をDBに保存するINSERT文を実行
 
@@ -51,13 +50,11 @@ class TodoController extends Controller
         return view('todo.edit', ['todo' => $todo]);
     }
 
-    public function update(Request $request, $id) // 第1引数: リクエスト情報の取得 第2引数: ルートパラメータの取得
+    public function update(TodoRequest $request, $id) // 第1引数: リクエスト情報の取得 第2引数: ルートパラメータの取得
     {
         $inputs = $request->all();
-        // TODO: 更新対象のデータを取得
-        $todo = $this->todo->find($id);
-        // TODO: 更新したい値の代入とUPDATE文の実行
-        $todo->fill($inputs)->save();
+        $todo = $this->todo->find($id);// TODO: 更新対象のデータを取得
+        $todo->fill($inputs)->save();// TODO: 更新したい値の代入とUPDATE文の実行
 
         return redirect()->route('todo.show', $todo->id);
     }
