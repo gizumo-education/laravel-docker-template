@@ -10,10 +10,12 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/todo', function () {
     echo 'Hello World!';
 });
+
+
+Route::get('/todo', 'TodoController@index'); /*section7のコントローラーへのルート.12行目だと反映されない*/
