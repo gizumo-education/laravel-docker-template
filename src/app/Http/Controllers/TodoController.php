@@ -13,4 +13,9 @@ class TodoController extends Controller
         $todos = $todo->all();
         return view('todo.index', ['todos' => $todos]);
     }
+
+    public function create()
+    {
+        return view('todo.create');
+    }
 }
