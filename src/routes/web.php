@@ -23,3 +23,7 @@ Route::get('/todo', 'TodoController@index'); /*section7のコントローラー�
 Route::get('/todo/create', 'TodoController@create');//新規作成画面のルート
 
 Route::get('/todo/create', 'TodoController@create')->name('todo.create'); // 追記名前付きルート
+
+Route::post('/todo', 'TodoController@store')->name('todo.store');
+
+Route::get('/todo', 'TodoController@index')->name('todo.index'); // ルート名の定義を追記
