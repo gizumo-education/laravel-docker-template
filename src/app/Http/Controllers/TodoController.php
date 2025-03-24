@@ -18,4 +18,11 @@ class TodoController extends Controller
         return view('todo.index', ['todos' => $todos]);
     }
     //class Todo extends Modelのインスタンス化
+
+    public function create()
+    {
+        return view('todo.create' );
+    }
+
 }
+

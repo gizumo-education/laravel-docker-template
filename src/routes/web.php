@@ -19,3 +19,5 @@ Route::get('/todo', function () {
 
 
 Route::get('/todo', 'TodoController@index'); /*section7のコントローラーへのルート.12行目だと反映されない*/
+
+Route::get('/todo/create', 'TodoController@create');//新規作成画面のルート
