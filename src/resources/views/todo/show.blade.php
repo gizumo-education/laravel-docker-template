@@ -7,8 +7,13 @@
         Todo詳細
       </div>
       <div class="card-body">
-        <div class="card-title">{{ $todo->content }}</div>
+        <h5 class="card-title">{{ $todo->content }}</h5>
         <div class="card-text">作成日時:{{ $todo->created_at }}</div>
+      </div>
+      <div class="row">
+        <div class="col-auto">
+          <a href="{{ route('todo.edit', $todo->id) }}" class="btn btn-info">編集する</a>
+        </div>
       </div>
     </div>
   </div>
