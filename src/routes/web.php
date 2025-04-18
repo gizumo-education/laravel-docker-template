@@ -18,11 +18,11 @@ Route::get('/todo', function () {
 });
 
 
-Route::get('/todo', 'TodoController@index'); /*section7のコントローラーへのルート.12行目だと反映されない*/
+Route::get('/todo', 'TodoController@index'); 
 
-Route::get('/todo/create', 'TodoController@create');//新規作成画面のルート
+Route::get('/todo/create', 'TodoController@create');
 
-Route::get('/todo/create', 'TodoController@create')->name('todo.create'); // 追記名前付きルート
+Route::get('/todo/create', 'TodoController@create')->name('todo.create'); 
 
 Route::post('/todo', 'TodoController@store')->name('todo.store');
 
