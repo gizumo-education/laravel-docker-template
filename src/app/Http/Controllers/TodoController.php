@@ -24,7 +24,7 @@ class TodoController extends Controller
         return view('todo.create' );
     }
 
-    public function store(Request $request)
+    public function store(Request $request) //クラスを引数に指定
     {
         $inputs = $request->all(); 
         $todo = new Todo(); 
@@ -32,4 +32,14 @@ class TodoController extends Controller
         $todo->save();
         return redirect()->route('todo.index');
     }
-}
+
+    public function show($id)
+    {
+        $model = new Todo();
+        $todo = $model->find($id);
+       //dd($todo);
+       return view('todo.show', ['todo' => $todo]); 
+    }
+}//storeメソッドの中身を調べる
+
+
