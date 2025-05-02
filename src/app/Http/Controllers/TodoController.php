@@ -12,9 +12,9 @@ class TodoController extends Controller
 {
     private $todo; 
 
-    public function __construct(Todo $todo)
+    public function __construct(Todo $todoInstance)
     {
-        $this->todo = $todo;
+        $this->todo = $todoInstance;
     }
 
     public function index() //初期画面
@@ -40,11 +40,21 @@ class TodoController extends Controller
 
     public function show($id)
     {
-        $todo = $this->todo->find($id);
+        $selectedTodo = $this->todo->find($id);
        //dd($todo);
-       return view('todo.show', ['todo' => $todo]); 
+       return view('todo.show', ['todo' => $selectedTodo]); 
     }
+
+    public function edit($id)
+{
+    // TODO: 編集対象のレコードの情報を持つTodoモデルのインスタンスを取得
+    $todo = $this->todo->find($id);
+   
+    return view('todo.edit', ['todo' => $todo]); 
 }
+}
+
+
 
 
 
@@ -56,4 +66,5 @@ class TodoController extends Controller
 //     {
 //         $this->todo = $todo; // 追記
 //     }
-// }見直す
+// }見直すsection１７
+
