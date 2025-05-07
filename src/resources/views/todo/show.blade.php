@@ -15,6 +15,15 @@
           <!-- TODO: 以下のhref属性にroute()を使用してリンクを指定 -->
           <a href="{{ route('todo.edit', $todo->id) }}" class="btn btn-info">編集する</a>
         </div>
+        <!-- 削除機能 -->
+        <div class="col-auto">
+    <form method="POST" action="{{ route('todo.delete', $todo->id) }}">
+      @csrf
+      @method('DELETE')
+      <button type="submit" class="btn btn-danger">削除する</button>
+    </form>
+  </div>
+
       </div>
     </div>
   </div>
