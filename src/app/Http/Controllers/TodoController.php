@@ -8,6 +8,6 @@ class TodoController extends Controller
 {
     public function index()
     {
-        dd('Hello World!');
+        return view('todo.index'); 
     }
 }
