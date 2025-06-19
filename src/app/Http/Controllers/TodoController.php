@@ -24,6 +24,10 @@ class TodoController extends Controller
 
         $content = $request->input('content'); 
         
+        $todo = new Todo();
+        $todo->content = $content;
+        $todo->save();
+
     }
    
 }
