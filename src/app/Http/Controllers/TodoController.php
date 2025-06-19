@@ -28,6 +28,7 @@ class TodoController extends Controller
         $todo->content = $content;
         $todo->save();
 
+        return redirect()->route('todo.index');
     }
    
 }
