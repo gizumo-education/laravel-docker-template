@@ -23,5 +23,5 @@ Route::get('/todo', function () {
 Route::get('/todo', 'TodoController@index');
 // 追加ボタン押した時（新規作成時）
 Route::get('/todo/create', 'TodoController@create')->name('todo.create');
-// データ保存時
+// データ入力時
 Route::post('/todo', 'TodoController@store')->name('todo.store');
