@@ -5,6 +5,7 @@
             <div class="card">
               <div class="card-header">ToDo作成</div>
               <div class="card-body">
+                <!-- 入力値の取得とデータ保存のためのルート指定-->
                 <form method="post" action="{{ route('todo.store') }}">
                 @csrf        
                   <div class="form-group row">
