@@ -8,13 +8,18 @@ use App\Todo;
 
 class TodoController extends Controller
 {
+    // コンストラクタインジェクション
+    public function __construct(Todo $todo)
+    {
+        private $todo;
+        // $todoプロパティにTodoインスタンスを代入
+         $this->todo = $todo; 
+    }
     // 一覧のためのデータ取得と表示
     public function index()
     {
-        // Model機能の使用のためTodoクラスのインスタンス化
-        $todo = new Todo();
         // Todosテーブルのデータを全件取得
-        $todos = $todo->all();
+        $todos = $this->$todo->all();
     //   index.create.phpの返却とそれに対するデータの受け渡し
         return view('todo.index', ['todos' => $todos]); 
     }
@@ -28,21 +33,19 @@ class TodoController extends Controller
     public function store(Request $request) {
         // 入力値の全件取得
         $inputs = $request->all();
-        // Model機能の使用のためTodoインスタンスの生成
-        $todo = new Todo();
         // 'content'カラムへの一括代入
-        $todo->fill($inputs);
+        $this->todo->fill($inputs);
         // データ保存
-        $todo->save();
+        $this->todo->save();
         // リダイレクト
         return redirect()->route('todo.index');
     }
 
     public function show($id)
     {
-    $model = new Todo();
+    
     // 指定されたIDにおけるレコードのデータ取得
-    $todo = $model->find($id);
+    $todo = $this->todo->find($id);
     // 詳細画面と指定IDのコンテンツを表示
     return view('todo.show', ['todo' => $todo]); 
     }
