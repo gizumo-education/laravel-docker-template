@@ -29,4 +29,13 @@ class TodoRequest extends FormRequest
             'content' => 'required|max:255',
         ];
     }
+    public function messages()
+    {
+        return [
+        // 入力欄のname属性.ルール => メッセージ
+        'content.required' => 'ToDoが入力されていません。',
+        'content.max' => 'ToDoは :max 文字以内で入力してください。',
+        ];
+    }
+
 }
