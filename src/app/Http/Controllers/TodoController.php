@@ -7,11 +7,12 @@ use Illuminate\Http\Request;
 use App\Todo;
 
 class TodoController extends Controller
-{
+{   
+    private $todo;
     // コンストラクタインジェクション
     public function __construct(Todo $todo)
     {
-        private $todo;
+        
         // $todoプロパティにTodoインスタンスを代入
          $this->todo = $todo; 
     }
