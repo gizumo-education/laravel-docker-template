@@ -58,7 +58,7 @@ class TodoController extends Controller
         // TODO: view()を使用して編集画面を表示
         return view('todo.edit', ['todo' => $todo]); 
     }
-    public function update(Request $request, $id) // 第1引数: リクエスト情報の取得　第2引数: ルートパラメータの取得
+    public function update(TodoRequest $request, $id) // 第1引数: リクエスト情報の取得　第2引数: ルートパラメータの取得
     {
     // TODO: リクエストされた値を取得
     $inputs = $request->all();
