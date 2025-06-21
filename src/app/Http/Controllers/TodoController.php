@@ -20,7 +20,7 @@ class TodoController extends Controller
     public function index()
     {
         // Todosテーブルのデータを全件取得
-        $todos = $this->$todo->all();
+        $todos = $this->todo->all();
     //   index.create.phpの返却とそれに対するデータの受け渡し
         return view('todo.index', ['todos' => $todos]); 
     }
@@ -50,6 +50,7 @@ class TodoController extends Controller
     // 詳細画面と指定IDのコンテンツを表示
     return view('todo.show', ['todo' => $todo]); 
     }
+    
    
 }
 
