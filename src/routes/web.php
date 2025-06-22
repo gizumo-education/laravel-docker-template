@@ -31,3 +31,5 @@ Route::get('/todo/{id}', 'TodoController@show')->name('todo.show');
 Route::get('/todo/{id}/edit', 'TodoController@edit')->name('todo.edit');
 // データ更新時
 Route::put('/todo/{id}', 'TodoController@update')->name('todo.update');
+// データ削除時
+Route::delete('/todo/{id}/delete', 'TodoController@delete')->name('todo.delete');
