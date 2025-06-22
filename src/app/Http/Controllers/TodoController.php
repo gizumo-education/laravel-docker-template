@@ -31,7 +31,7 @@ class TodoController extends Controller
     }
 
     // フォーム入力時のデータ保存
-    public function store(Request $request) {
+    public function store(TodoRequest $request) {
         // 入力値の全件取得
         $inputs = $request->all();
         // 'content'カラムへの一括代入
