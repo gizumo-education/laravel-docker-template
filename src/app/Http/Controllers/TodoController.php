@@ -55,7 +55,7 @@ class TodoController extends Controller
     // TODO: ルートパラメータを引数に受け取る
     public function edit($id)
     {
-        // TODO: 編集対象のレコードの情報を持つTodoモデルのインスタンスを取得
+        //編集対象のレコードの情報を持つTodoモデルのインスタンスを取得
         $todo = $this->todo->find($id);
         // TODO: view()を使用して編集画面を表示
         return view('todo.edit', ['todo' => $todo]); 
@@ -71,5 +71,13 @@ class TodoController extends Controller
     
     return redirect()->route('todo.show', $todo->id);
     }
+    // データ削除時
+    public function delete($id)
+{
+    //削除対象のレコードの情報を持つTodoモデルのインスタンスを取得
+    $todo = $this->todo->find($id);
+    $todo->delete();
+    return redirect()->route('todo.index');
+}
 }
 
