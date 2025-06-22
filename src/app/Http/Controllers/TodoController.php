@@ -68,6 +68,8 @@ class TodoController extends Controller
     $todo = $this->todo->fill($inputs);
     // TODO: 更新したい値の代入とUPDATE文の実行
     $todo->save();
+    
+    return redirect()->route('todo.show', $todo->id);
     }
 }
 
