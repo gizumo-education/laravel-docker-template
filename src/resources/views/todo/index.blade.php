@@ -11,7 +11,7 @@
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div id="app">
+   <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
       <div class="container">
         <a class="navbar-brand" href="/todo">ToDo</a>
@@ -28,6 +28,9 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8">
+            <p class="text-left">
+              <a class="btn btn-success" href="http://localhost:8080/todo/create">ToDoを追加</a>
+            </p>
             <div class="card">
               <div class="card-header">
                 ToDo一覧
@@ -36,7 +39,6 @@
                 @foreach ($todos as $todo)
                   <div class="d-flex align-items-center p-2">
                     <span class="col-9">{{ $todo->content }}</span>
-<!-- {{ }}波括弧とは別に{!! !!}という記法もある。挙動が異なるため改めて調べる -->
                   </div>
                 @endforeach
               </div>
