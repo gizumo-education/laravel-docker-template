@@ -17,12 +17,12 @@ class TodoController extends Controller
     }
 
     public function create()
-{
+    {
     return view('todo.create');
-}
+    }
 
     public function store(Request $request)
-{
+    {
     $inputs = $request->all();
 
     // 1. todosテーブルの1レコードを表すTodoクラスをインスタンス化
@@ -33,5 +33,5 @@ class TodoController extends Controller
     $todo->save();
 
     return redirect()->route('todo.index');
-}
+    }
 }
