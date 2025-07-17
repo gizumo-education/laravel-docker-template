@@ -23,16 +23,10 @@ class TodoController extends Controller
 	public function store(Request $request)
 	{
 	$inputs = $request->all();
-	// [
-	//     'content' => '犯行予告など悪意のある投稿',
-	//     'user_id' => '1',
-	// ]
 
 	$todo = new Todo();
-	$todo->user_id = Auth::id(); // ログインしている攻撃者のユーザID：2を代入
+	$todo->user_id = Auth::id();
 	$todo->fill($inputs);
-	// $todo->content = '犯行予告など悪意のある投稿';
-	// $fillableで許可していないため被害者のユーザID：1は再代入されない
 	$todo->save();
 
 	return redirect()->route('todo.index');
