@@ -18,3 +18,8 @@ Route::get('/', function () {
 });
 
 Route::post('/todo', 'TodoController@store')->name('todo.store');
+
+Route::get('/todo/{id}', 'TodoController@show')->name('todo.show');
+
+// ①引数のURL (/todo)リクエストが送られてきたときに第②引数を返す
+
