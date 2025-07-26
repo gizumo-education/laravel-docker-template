@@ -50,4 +50,12 @@ class TodoController extends Controller
 
         return view('todo.show', ['todo' => $todo]);
     }
+
+    public function edit($id)
+    {
+        $todo = Todo::find($id);
+
+        return view('todo.edit', ['todo' => $todo]);
+        dd($todo);
+    }
 }
