@@ -18,6 +18,7 @@ class CreateTodosTable extends Migration
             $table->string('content');
             $table->timestamps();
         });
+        
     }
 
     /**
