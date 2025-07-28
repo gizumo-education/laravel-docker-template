@@ -10,9 +10,9 @@ class TodoController extends Controller
 {
     public function index()
     {
-        $todo = new Todo();
+        $todo = new Todo();  // TodoControllerでTodoModelを使えるようにする
         $todos = $todo->all();
-        dd($todos);
+        // dd($todos);  → todosテーブルのレコードを全件取得できているかデバッグする
         
         return view('todo.index');
         // dd('Hello World!');
