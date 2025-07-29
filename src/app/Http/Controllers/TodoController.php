@@ -14,7 +14,8 @@ class TodoController extends Controller
         $todos = $todo->all();
         // dd($todos);  → todosテーブルのレコードを全件取得できているかデバッグする
         
-        return view('todo.index');
+        // return view('todo.index', ['helloWorld' => 'hello World!']);  // 取得したデータをHTML(→ blade)ファイルに渡す
+        return view('todo.index', ['todos' => $todos]);
         // dd('Hello World!');
     }
 }
