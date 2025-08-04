@@ -22,13 +22,18 @@ class TodoController extends Controller
 	}
 	public function store(Request $request)
 	{
-	$inputs = $request->all();
+		$inputs = $request->all();
 
-	$todo = new Todo();
-	$todo->user_id = Auth::id();
-	$todo->fill($inputs);
-	$todo->save();
+		$todo = new Todo();
+		$todo->fill($inputs);
+		$todo->save();
 
-	return redirect()->route('todo.index');
+		return redirect()->route('todo.index');
+	}
+	public function show($id)
+	{
+		$model = new Todo();
+		$todo = $model->find($id);
+		return view('todo.show', ['todo' => $todo]);
 	}
 }
