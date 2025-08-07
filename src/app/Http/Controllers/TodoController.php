@@ -12,28 +12,36 @@ class TodoController extends Controller
     {
         $this->todo = $todo;
     }
+
     public function index()
     {
-    $todos = $this->todo->all();
-    return view('todo.index', ['todos' => $todos]);
+        $todos = $this->todo->all();
+        return view('todo.index', ['todos' => $todos]);
     }
+
     public function create()
     {
         return view('todo.create');
     }
+
     public function store(Request $request)
-    //引数の左隣にクラスを入れて自動インスタンス化
+    //引数の左隣にクラスを入れて自動インスタンス化(メソッドインジェクション)
     {
-    $inputs = $request->all();
-    /* シングルアローはインスタンスの中のプロパティなどを呼ぶときに使用（$requestはオブジェクト型）
-    $requestに何クラスからできたインスタンス化か*/
-    $this->todo->fill($inputs);
-    $this->todo->save();
-    return redirect()->route('todo.index');
+        $inputs = $request->all();
+        $this->todo->fill($inputs);
+        $this->todo->save();
+        return redirect()->route('todo.index');
     }
+    
     public function show($id)
     {
-    $todo = $this->todo->find($id);
-    return view('todo.show', ['todo' => $todo]);
+        $todo = $this->todo->find($id);
+        return view('todo.show', ['todo' => $todo]);
+    }
+
+    public function edit($id)
+    {
+        $todo = $this->todo->find($id);
+        return view('todo.edit', ['todo' => $todo]);
     }
 }
