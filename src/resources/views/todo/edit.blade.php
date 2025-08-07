@@ -5,8 +5,10 @@
     <div class="card">
       <div class="card-header">ToDo編集</div>
       <div class="card-body">
-        <form method="POST" action="">
+        <form method="POST" action="{{ route('todo.update', $todo->id) }}">
           @csrf
+          @method('PUT')
+          <input type="hidden" name="_method" value="PUT">
           <div class="form-group row">
             <label for="name" class="col-md-4 col-form-label text-md-right">ToDo入力</label>
             <div class="col-md-6">
