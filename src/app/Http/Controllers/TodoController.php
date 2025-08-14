@@ -1,9 +1,9 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\TodoRequest;
 use App\Todo;
 
-use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
@@ -24,7 +24,7 @@ class TodoController extends Controller
         return view('todo.create');
     }
 
-    public function store(Request $request)
+    public function store(TodoRequest $request)
     //引数の左隣にクラスを入れて自動インスタンス化(メソッドインジェクション)
     {
         $inputs = $request->all();
@@ -33,7 +33,7 @@ class TodoController extends Controller
         return redirect()->route('todo.index');
     }
     
-    public function show($id)
+    public function show(TodoRequest $request, $id)
     {
         $todo = $this->todo->find($id);
         return view('todo.show', ['todo' => $todo]);
