@@ -16,15 +16,15 @@ class TodoController extends Controller
     }
     public function create()
     {
-    // TODO: 第1引数を指定
-    return view('todo.create'); 
+      return view('todo.create'); 
     }
     public function store(Request $request)
     {
-      $content = $request->input('content'); // 追記
-      
-      $todo = new Todo(); 
-      $todo->content = $content;
+      $inputs = $request->all();
+      dd($inputs);
+
+      $todo = new Todo();
+      $todo->fill($inputs);
       $todo->save();
 
       return redirect()->route('todo.index');
