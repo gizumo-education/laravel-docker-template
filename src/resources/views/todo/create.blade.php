@@ -29,8 +29,8 @@
     </nav>
     <main class="py-4">
       <div class="container">
-      @extends('layouts.base') <!-- 追記 -->
-      @section('content') <!-- 追記 -->
+      @extends('layouts.base') 
+      @section('content') 
         <div class="row justify-content-center">
           <div class="col-md-8">
             <div class="card">
