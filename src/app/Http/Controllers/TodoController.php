@@ -9,9 +9,9 @@ class TodoController extends Controller
 {
     public function index()
     {
-      $todo = new Todo(); 
-      $todos = $todo->all();
-      return view('todo.index', ['todos' =>$todos]);
+        $todo = new Todo();
+        $todos = $todo->all();
+        return view('todo.index', ['todos' => $todos]);
     }
     public function create()
     {
@@ -21,10 +21,15 @@ class TodoController extends Controller
     {
       $inputs = $request->all();
       $todo = new Todo();
-      $todo->fill($inputs);
+      $todo->fill($inputs); // 変更
       $todo->save();
-
       return redirect()->route('todo.index');
     }
-}
+    public function show($id)
+    {
+      $model = new Todo();
+      $todo = $model->find($id);
 
+      return view('todo.show', ['todo' => $todo]);
+    }
+}
