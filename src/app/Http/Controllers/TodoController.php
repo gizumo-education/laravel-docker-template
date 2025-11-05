@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TodoRequest; 
 use App\Todo;
-use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
@@ -23,10 +23,10 @@ class TodoController extends Controller
     {
       return view('todo.create'); 
     }
-    public function store(Request $request)
+    public function store(TodoRequest $request)
     {
       $inputs = $request->all();
-      $this->todo->fill($inputs); // 変更
+      $this->todo->fill($inputs); 
       $this->todo->save(); 
       return redirect()->route('todo.index');
     }
@@ -37,16 +37,15 @@ class TodoController extends Controller
     }
     public function edit($id)
     {
-    // TODO: 編集対象のレコードの情報を持つTodoモデルのインスタンスを取得
       $todo = $this->todo->find($id);
       return view('todo.edit', ['todo' => $todo]);
     }
-    public function update(Request $request, $id) 
+    public function update(TodoRequest $request, $id) 
     {
-      $inputs = $request->all(); 
-      $todo = $this->todo->find($id);
-      $todo->fill($inputs)->save();
-    
+        $inputs = $request->all();
+        $todo = $this->todo->find($id);
+        $todo->fill($inputs);
+        $todo->save();
       return redirect()->route('todo.show', $todo->id);
     }
 }
