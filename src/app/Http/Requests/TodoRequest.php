@@ -35,5 +35,4 @@ class TodoRequest extends FormRequest
         'content.max' => 'ToDoは :max 文字以内で入力してください。',
       ];
     }
-    
 }
