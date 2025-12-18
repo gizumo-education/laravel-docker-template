@@ -18,4 +18,10 @@ class TodoController extends Controller
 
     }
 
+    public function create()
+    {
+        //TODO; 第一引数を指定
+       return view ('todo.create');
+    }
+
 }
