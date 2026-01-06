@@ -13,6 +13,6 @@ class TodoController extends Controller
         $todo = new Todo();
         $todos = $todo->all(); //todosテーブルから全てのレコードを取得
 
-        return view('todo.index');
+        return view('todo.index', ['todos' => $todos]);
     }
 }
