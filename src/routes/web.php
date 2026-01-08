@@ -25,7 +25,4 @@ Route::post('/todo', 'TodoController@store')->name('todo.store');
 
 Route::get('/todo/{id}', 'TodoController@show')->name('todo.show');
 
-// 第一引数(/以下・URL末尾・パス)にGET(取得)・POST(送信)リクエストが送られたとき（または この名前のルートに案内されたとき）
-// 第二引数(Controllerのメソッド)を実行
-
-// :: は シングルアロー(->) と同じような感じ
+Route::get('/todo/{id}/edit', 'TodoController@edit')->name('todo.edit');
