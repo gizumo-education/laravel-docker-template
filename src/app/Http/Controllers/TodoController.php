@@ -8,37 +8,37 @@ use App\Todo;  //appディレクトリのTodoModel Todoクラスをインポー�
 
 class TodoController extends Controller
 {
+    private $todo;
+
+    public function __construct(Todo $todo)
+    {
+        $this->todo = $todo;
+    }
+    
     public function index()
     {
-        $todo = new Todo();  //TodoControllerでTodoModelを使えるようにインスタンス化
-        $todos = $todo->all();  //DBからtodosテーブルのレコード(Todoインスタンス)を全件取得して$todosに代入
-        //allメソッドの返り値はIlluminate\Database\Eloquent\Collectionクラスのインスタンス
-        
+        $todos = $this->todo->all();
         return view('todo.index', ['todos' => $todos]);  //bladeファイル(index)にtodosテーブルのレコード情報を渡す→todos変数としてデータを表示
     }
 
     public function create()
     {
         return view('todo.create');
-        //todo.create(bladeファイル/html)を画面に表示させる
     }
 
     public function store(Request $request)  //引数の()の中でRequestクラスをインスタンス化して$requestという名前で受け取る
     {
         $inputs = $request->all();    //フォームから送信された値を一括で配列として返す
         
-        $todo = new Todo();    //todosテーブルの1レコードを表すTodoクラスをインスタンス化
-        $todo->fill($inputs);  //Todoインスタンス(Model)の各プロパティに保存したい値(取得した値)を一括代入
-        $todo->save();         //Todoインスタンスの`->save()`を実行してオブジェクトの状態をDBに保存するINSERT文を実行
+        $this->todo->fill($inputs);  //Todoインスタンス(Model)の各プロパティに保存したい値(取得した値)を一括代入
+        $this->todo->save();         //Todoインスタンスの`->save()`を実行してオブジェクトの状態をDBに保存するINSERT文を実行
 
-        return redirect()->route('todo.index');  //一覧ページにリダイレクト
+        return redirect()->route('todo.index');
     }
 
     public function show($id)
     {
-        $model = new Todo();
-        $todo = $model->find($id);
-
+        $todo = $this->todo->find($id);
         return view('todo.show', ['todo' => $todo]);
     }
 }
