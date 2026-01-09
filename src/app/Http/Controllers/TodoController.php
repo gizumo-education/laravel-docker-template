@@ -18,7 +18,7 @@ class TodoController extends Controller
     public function index()
     {
         $todos = $this->todo->all();
-        return view('todo.index', ['todos' => $todos]);  //bladeファイル(index)にtodosテーブルのレコード情報を渡す→todos変数としてデータを表示
+        return view('todo.index', ['todos' => $todos]);
     }
 
     public function create()
@@ -26,12 +26,12 @@ class TodoController extends Controller
         return view('todo.create');
     }
 
-    public function store(Request $request)  //引数の()の中でRequestクラスをインスタンス化して$requestという名前で受け取る
+    public function store(Request $request)
     {
-        $inputs = $request->all();    //フォームから送信された値を一括で配列として返す
+        $inputs = $request->all();
         
-        $this->todo->fill($inputs);  //Todoインスタンス(Model)の各プロパティに保存したい値(取得した値)を一括代入
-        $this->todo->save();         //Todoインスタンスの`->save()`を実行してオブジェクトの状態をDBに保存するINSERT文を実行
+        $this->todo->fill($inputs);
+        $this->todo->save();
 
         return redirect()->route('todo.index');
     }
@@ -46,5 +46,14 @@ class TodoController extends Controller
     {
         $todo = $this->todo->find($id);
         return view('todo.edit', ['todo' => $todo]);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $inputs = $request->all();
+        $todo = $this->todo->find($id);
+        $todo->fill($inputs)->save();
+
+        return redirect()->route('todo.show', $todo->id);
     }
 }
