@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;  //名前空間の宣言 関連するクラスやインターフェイス、関数、定数をひとまとめにして扱うもの
 
-use Illuminate\Http\Request;
-
-use App\Todo;  //appディレクトリのTodoModel Todoクラスをインポート
+use App\Http\Requests\TodoRequest;
+use App\Todo;
 
 class TodoController extends Controller
 {
@@ -26,7 +25,7 @@ class TodoController extends Controller
         return view('todo.create');
     }
 
-    public function store(Request $request)
+    public function store(TodoRequest $request)
     {
         $inputs = $request->all();
         
@@ -48,7 +47,7 @@ class TodoController extends Controller
         return view('todo.edit', ['todo' => $todo]);
     }
 
-    public function update(Request $request, $id)
+    public function update(TodoRequest $request, $id)
     {
         $inputs = $request->all();
         $todo = $this->todo->find($id);
