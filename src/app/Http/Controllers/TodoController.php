@@ -13,7 +13,7 @@ class TodoController extends Controller
         $todo = new Todo();
         $todos = $todo->all(); //todosテーブルから全てのレコードを取得
 
-        return view('todo.index', ['todos' => $todos]);
+        return view('todo.index', ['todos' => $todos]); //todosテーブルのすべてのレコードをindexに渡す。第二引数は連想配列
     }
 
     public function create()
@@ -28,10 +28,10 @@ class TodoController extends Controller
         // dd('新規作成のルート実行！');
 
         $inputs = $request->all();
-        dd($inputs);
+        // dd($inputs);
 
         // 1. todosテーブルの1レコードを表すTodoクラスをインスタンス化
-        $todo = new Todo(); 
+        $todo = new Todo();
         // 2. Todoインスタンスのカラム名のプロパティに保存したい値を代入
         $todo->fill($inputs);
         // 3. Todoインスタンスの`->save()`を実行してオブジェクトの状態をDBに保存するINSERT文を実行
