@@ -5,8 +5,6 @@
       <div class="card">
         <div class="card-header">ToDo作成</div>
         <div class="card-body">
-
-
           <form method="POST" action="{{ route('todo.store') }}">
             @csrf
             <div class="form-group row">
