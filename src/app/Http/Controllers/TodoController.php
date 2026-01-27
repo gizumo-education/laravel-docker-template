@@ -8,16 +8,25 @@ use App\Todo;
 
 class TodoController extends Controller
 {
+    private $todo; //TodoControllerのクラスプロパティ（コンストラクタインジェクション）
+
+    public function __construct(Todo $todo) //引数はTodoクラスのインスタンスを生成し、$todo変数に代入
+    {
+        $this->todo = $todo; //コンストラクタインジェクションで生成したTodoクラスのインスタンスをプロパティに代入
+    }
+
     public function index()
     {
-        $todo = new Todo();
-        $todos = $todo->all(); //todosテーブルから全てのレコードを取得
+        //$todo = new Todo();
+        //$todos = $todo->all(); //todosテーブルから全てのレコードを取得
         // [
         //     ["id" => 1, ...],
         //     ["id" => 1, ...],
         //     ...
         // ]
         // dd($todos);
+        $todos = $this->todo->all();
+
         return view('todo.index', ['todos' => $todos]); //変数名を 'todos' と定義し、todosテーブルのすべてのレコードをindexに渡す。第二引数は連想配列
     }
 
@@ -35,22 +44,15 @@ class TodoController extends Controller
         $inputs = $request->all(); //送られてきた入力データを連想配列として一括取得し、変数 $inputs に代入
         // dd($inputs);
 
-        // 1. todosテーブルの1レコードを表すTodoクラスをインスタンス化
-        $todo = new Todo();
-        // 2. Todoインスタンスのカラム名のプロパティに保存したい値を代入
-        $todo->fill($inputs);
-        // 3. Todoインスタンスの`->save()`を実行してオブジェクトの状態をDBに保存するINSERT文を実行
-        $todo->save();
+        $this->todo->fill($inputs); //Todoインスタンスのカラム名のプロパティに保存したい値を代入
+        $this->todo->save(); //Todoインスタンスの`->save()`を実行してオブジェクトの状態をDBに保存するINSERT文を実行
 
         return redirect()->route('todo.index');
     }
 
     public function show($id)
     {
-        $model = new Todo();
-        $todo = $model->find($id); //find()メソッドにより指定のIDのデータを取得
-        // dd($todo);
-
+        $todo = $this->todo->find($id); //find()メソッドにより指定のIDのデータを取得 //$this->todoはTodoControllerのクラスプロパティでTodoクラスのインスタンスが代入
         return view('todo.show', ['todo' => $todo]);
     }
 }
