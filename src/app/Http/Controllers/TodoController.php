@@ -12,22 +12,27 @@ class TodoController extends Controller
     {
         $todo = new Todo();
         $todos = $todo->all(); //todosテーブルから全てのレコードを取得
-
-        return view('todo.index', ['todos' => $todos]); //todosテーブルのすべてのレコードをindexに渡す。第二引数は連想配列
+        // [
+        //     ["id" => 1, ...],
+        //     ["id" => 1, ...],
+        //     ...
+        // ]
+        // dd($todos);
+        return view('todo.index', ['todos' => $todos]); //変数名を 'todos' と定義し、todosテーブルのすべてのレコードをindexに渡す。第二引数は連想配列
     }
 
     public function create()
     {
         // dd('新規作成画面のルート実行！');
 
-        return view('todo.create');
+        return view('todo.create'); //create.blade.php（ToDo入力画面）を表示させる。
     }
 
     public function store(Request $request)
     {
         // dd('新規作成のルート実行！');
 
-        $inputs = $request->all();
+        $inputs = $request->all(); //送られてきた入力データを連想配列として一括取得し、変数 $inputs に代入
         // dd($inputs);
 
         // 1. todosテーブルの1レコードを表すTodoクラスをインスタンス化
@@ -39,4 +44,14 @@ class TodoController extends Controller
 
         return redirect()->route('todo.index');
     }
+
+    public function show($id)
+    {
+        $model = new Todo();
+        $todo = $model->find($id); //find()メソッドにより指定のIDのデータを取得
+        // dd($todo);
+
+        return view('todo.show', ['todo' => $todo]);
+    }
 }
+
