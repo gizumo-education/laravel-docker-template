@@ -11,6 +11,7 @@ class TodoController extends Controller
 
     public function __construct(Todo $todo)
     {
+        // dd('1');
         $this->todo = $todo;
     }
     
@@ -22,6 +23,7 @@ class TodoController extends Controller
 
     public function create()
     {
+        // dd('2');
         return view('todo.create');
     }
 
