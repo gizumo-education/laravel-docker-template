@@ -2,8 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-
+use App\Http\Requests\TodoRequest;
 use App\Todo;
 
 class TodoController extends Controller
@@ -32,19 +31,14 @@ class TodoController extends Controller
 
     public function create()
     {
-        // dd('新規作成画面のルート実行！');
-
         return view('todo.create'); //create.blade.php（ToDo入力画面）を表示させる。
     }
 
-    public function store(Request $request) //$requestにRequestクラスのインスタンスを代入。 メソッドインジェクション…メソッドの引数の左側にクラス名を書くことで、インスタンス化が自動で行われる
+    public function store(TodoRequest $request) //$requestにTodoRequestクラスのインスタンスを代入。 メソッドインジェクション…メソッドの引数の左側にクラス名を書くことで、インスタンス化が自動で行われる
     {
-        $inputs = $request->all(); //送られてきた入力データを連想配列として一括取得し、変数 $inputs に代入
-        // dd($inputs); 連想配列
-
+        $inputs = $request->all(); //送られてきた入力データを連想配列として一括取得し、変数 $inputs に代入 // dd($inputs); 連想配列
         $this->todo->fill($inputs); //Todoインスタンスのカラム名のプロパティに保存したい値を代入
         $this->todo->save(); //Todoインスタンスの`->save()`を実行してオブジェクトの状態をDBに保存するINSERT文を実行
-
         return redirect()->route('todo.index');
     }
 
@@ -60,12 +54,12 @@ class TodoController extends Controller
         return view('todo.edit', ['todo' => $todo]);
     }
 
-    public function update(Request $request, $id) // 第1引数: リクエスト情報の取得　第2引数: ルートパラメータの取得
+    public function update(TodoRequest $request, $id) // 第1引数: リクエスト情報の取得　第2引数: ルートパラメータの取得
     {
         $inputs = $request->all();//リクエストされた値を取得
         $todo = $this->todo->find($id);
-        $todo->fill($inputs)->save(); //更新したい値の代入とUPDATE文の実行され、データが更新
-
+        $todo->fill($inputs);
+        $todo->save(); //更新したい値の代入とUPDATE文の実行され、データが更新
         return redirect()->route('todo.show', $todo->id); //第2引数には、パスパラメータとして更新したToDoのIDを指定
     }
 }
