@@ -39,8 +39,6 @@ class TodoController extends Controller
 
     public function store(Request $request) //$requestにRequestクラスのインスタンスを代入。 メソッドインジェクション…メソッドの引数の左側にクラス名を書くことで、インスタンス化が自動で行われる
     {
-        // dd('新規作成のルート実行！');
-
         $inputs = $request->all(); //送られてきた入力データを連想配列として一括取得し、変数 $inputs に代入
         // dd($inputs); 連想配列
 
@@ -60,6 +58,15 @@ class TodoController extends Controller
     {
         $todo = $this->todo->find($id);
         return view('todo.edit', ['todo' => $todo]);
+    }
+
+    public function update(Request $request, $id) // 第1引数: リクエスト情報の取得　第2引数: ルートパラメータの取得
+    {
+        $inputs = $request->all();//リクエストされた値を取得
+        $todo = $this->todo->find($id);
+        $todo->fill($inputs)->save(); //更新したい値の代入とUPDATE文の実行され、データが更新
+
+        return redirect()->route('todo.show', $todo->id); //第2引数には、パスパラメータとして更新したToDoのIDを指定
     }
 }
 
