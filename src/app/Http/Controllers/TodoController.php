@@ -62,5 +62,12 @@ class TodoController extends Controller
         $todo->save(); //更新したい値の代入とUPDATE文の実行され、データが更新
         return redirect()->route('todo.show', $todo->id); //第2引数には、パスパラメータとして更新したToDoのIDを指定
     }
+
+    public function delete($id)
+    {
+        $todo = $this->todo->find($id);
+        $todo->delete();
+        return redirect()->route('todo.index');
+    }
 }
 
