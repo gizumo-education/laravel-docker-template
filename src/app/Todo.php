@@ -3,9 +3,12 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Todo extends Model //Todoというクラスを定義し、それをModelクラスから継承
 {
+    use SoftDeletes;
+
     protected $table = 'todos'; //データベースの todos というテーブルと対応していることを指定
     
     protected $fillable = [
