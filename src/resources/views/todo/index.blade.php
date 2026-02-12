@@ -11,7 +11,6 @@
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
 <body>
-  {{-- @dd($todos) --}}
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
       <div class="container">
@@ -29,6 +28,8 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8">
+            <p class="text-left">
+              <a class="btn btn-success" href="{{ route('todo.create') }}">ToDoを追加</a>
             <div class="card">
               <div class="card-header">
                 ToDo一覧
@@ -47,6 +48,4 @@
     </main>
   </div>
 </body>
-
 </html>
-<!-- ここまで -->
