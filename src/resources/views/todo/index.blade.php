@@ -11,7 +11,7 @@
   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
 </head>
 <body>
-  <div id="app">
+<div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
       <div class="container">
         <a class="navbar-brand" href="/todo">ToDo</a>
@@ -33,6 +33,11 @@
                 ToDo一覧
               </div>
               <div class="list-group list-group-flush">
+                @foreach ($todos as $todo)
+                  <div class="d-flex align-items-center p-2">
+                    <span class="col-9">{{ $todo->content }}</span>
+                  </div>
+                @endforeach
               </div>
             </div>
           </div>
