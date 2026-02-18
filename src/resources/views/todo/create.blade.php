@@ -1,4 +1,4 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
   <meta charset="utf-8">
@@ -28,7 +28,9 @@
       </div>
     </nav>
     <main class="py-4">
-      <div class="container">
+      <div class="container"> -->
+@extends('layouts.base') 
+@section('content') 
         <div class="row justify-content-center">
           <div class="col-md-8">
             <div class="card">
@@ -51,8 +53,9 @@
             </div>
           </div>
         </div>
-      </div>
+      @endsection
+      <!-- </div>
     </main>
   </div>
 </body>
-</html>
+</html> -->

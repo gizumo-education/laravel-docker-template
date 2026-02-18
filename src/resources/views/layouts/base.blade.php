@@ -1,4 +1,4 @@
-<!-- <!doctype html>
+<!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
   <meta charset="utf-8">
@@ -25,30 +25,10 @@
       </div>
     </nav>
     <main class="py-4">
-      <div class="container"> -->
-@extends('layouts.base') 
-@section('content') 
-        <div class="row justify-content-center">
-          <div class="col-md-8">
-            <p class="text-left">
-              <a class="btn btn-success" href="{{ route('todo.create') }}">ToDoを追加</a>
-            <div class="card">
-              <div class="card-header">
-                ToDo一覧
-              </div>
-              <div class="list-group list-group-flush">
-                @foreach ($todos as $todo)
-                  <div class="d-flex align-items-center p-2">
-                    <span class="col-9">{{ $todo->content }}</span>
-                  </div>
-                @endforeach
-              </div>
-            </div>
-          </div>
-        </div>
-  @endsection
-     <!-- </div>
+      <div class="container">
+        @yield('content')
+      </div>
     </main>
   </div>
 </body>
-</html> -->
+</html>
