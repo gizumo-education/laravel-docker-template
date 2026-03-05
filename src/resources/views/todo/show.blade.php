@@ -10,6 +10,14 @@
         <h5 class="card-title">{{ $todo->content }}</h5>
         <p class="card-text">作成日時：{{ $todo->created_at }}</p>
       </div>
+      <div class="row">
+        <div class="col-auto">
+          <a href="{{ route('todo.edit' , $todo->id) }}" class="btn btn-info">編集する</a> 
+          <!-- 🔴引っかかったところ、最初href内に$todo->idの記載をしていなかった→ todo.edit は /todo/{id}/edit というルートを通っている
+          と記載があったのに、idの指定をしていなかったためにエラーが起こってしまっていた。
+          $todo->idという記載をすることで、指定のidデータを参照した上で編集ができるようになる？解説求め -->
+        </div>
+      </div>
     </div>
   </div>
 </div>

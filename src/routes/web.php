@@ -23,6 +23,11 @@ Route::get('/todo', 'TodoController@index')->name('todo.index'); //一覧画面�
 
 Route::get('/todo/{id}', 'TodoController@show')->name('todo.show'); /* 詳細ボタンの作成 ルートどり */
 
+Route::get('/todo/{id}/edit', 'TodoController@edit')->name('todo.edit'); //Sec18にて作成の編集するボタンを押した時のルートの定義
+// どんなルート？ー編集対象のToDoの1件を取得して表示するルート
+// 🔴詳細画面と更新画面で別の画面表示をするため、編集画面のルートの最後には/.editをつけて差別している。
+
+
 
 
 ?>
