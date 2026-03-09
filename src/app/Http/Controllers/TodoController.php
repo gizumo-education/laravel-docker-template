@@ -30,8 +30,8 @@ public function store(Request $request)
 
      // 1. todosテーブルの1レコードを表すTodoクラスをインスタンス化
     $todo = new Todo(); 
-    // 2. Todoインスタンスのカラム名のプロパティに保存したい値を代入
-    $todo->content = $inputs['content'];
+    // 2. Todoインスタンスの各プロパティに保存したい値を一括で代入
+    $todo->fill($inputs);
     // 3. Todoインスタンスの`->save()`を実行してオブジェクトの状態をDBに保存するINSERT文を実行
     $todo->save();
 
