@@ -27,7 +27,11 @@ Route::get('/todo/{id}/edit', 'TodoController@edit')->name('todo.edit'); //Sec18
 // どんなルート？ー編集対象のToDoの1件を取得して表示するルート
 // 🔴詳細画面と更新画面で別の画面表示をするため、編集画面のルートの最後には/.editをつけて差別している。
 
+Route::put('/todo/{id}', 'TodoController@update')->name('todo.update');
+//PUTメソッドでデータの更新(上書き)をするよう指定
+///todo/{id}で特定のidのTodoのデータを指定
 
+Route::get('/todo/{id}', 'TodoController@show')->name('todo.show');
 
 
 ?>
