@@ -24,11 +24,14 @@ public function create()
 
 public function store(Request $request)
 {
-   $todo = new Todo();
-    $todo->content = $content;
+$inputs = $request->all(); // 変更
+
+    $todo = new Todo();
+    $todo->user_id = Auth::id(); 
+    $todo->fill($inputs);
     $todo->save();
 
-     return redirect()->route('todo.index');
+    return redirect()->route('todo.index');
 }
 }
 
