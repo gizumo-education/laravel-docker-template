@@ -3,12 +3,16 @@
 ## Todo一覧機能
 
 ### Todoモデルのallメソッドで実行しているSQLは何か
-- todosテーブルから全件取得するため、内部的には SELECT * FROM todos; が実行される
+- todosテーブルから全件取得するため、内部的には SELECT * FROM todos; が実行されている
 ### Todoモデルのallメソッドの返り値は何か
 - Illuminate\Database\Eloquent\Collectionクラスのインスタンス
 
 - 補足
+Illuminate
+これは Laravelの内部で使われている名前空間「Laravelが提供しているクラス」という目印
 CollectionインスタンスはLaravelで用意されているクラスで、配列操作に特化している。
+Eloquent
+LaravelのORM（テーブルのレコードをオブジェクトとして扱う仕組み）
 
 ### 配列の代わりにCollectionクラスを使用するメリットは
 - Laravelの、ORM (Object-Relational Mapping) の一つEloquentを用いることでDBの操作を行うことができる。
@@ -22,6 +26,7 @@ CollectionインスタンスはLaravelで用意されているクラスで、配
 ### view関数の第1・第2引数の指定と何をしているか
 - 【第1引数】
 指定するもの： 表示したいBladeファイルの名前（resources/views フォルダからのパス）。
+
 ### index.blade.phpの$todos・$todoに代入されているものは何か
 - $todosに代入されている値
 →Controllerにて取得したCollectionインスタンスが代入されている
@@ -40,16 +45,23 @@ CollectionインスタンスはLaravelで用意されているクラスで、配
 ## Todo作成機能
 
 ### Requestクラスのallメソッドは何をしているか
-- ブラウザやクライアントから送られてきた フォームの入力やクエリなどすべてのデータ を配列で返す
+- 新規作成画面で作成されたフォームのデータをすべて配列で実行している。
 ### fillメソッドは何をしているか
-- 引数に指定した連想配列を一括代入できるメソッド
+- 引数に指定した連想配列のデータをモデルの属性へ一括代入するメソッドなので、$inputsに含まれるデータを$todoへ一括代入している。
 ### $fillableは何のために設定しているか
 - 一括代入のデメリットとして、脆弱性があげられる。name="user_id"のinputタグを生成して、被害者のユーザIDと犯行予告などの悪意のある投稿を不正に送信できたりする。
-このような攻撃を防ぐために、代入できる項目に制限をかける必要がある
+このような攻撃を防ぐために、代入できる項目に制限をかける必要がある。今回はtodo.phpでtodosには'content'しか代入できないように制限をかけている。
+また、User.php でもユーザーが遅れるデータに制限をかけている。
 ### saveメソッドで実行しているSQLは何か
-- オブジェクトの状態をDBに保存するINSERT文を実行
+- オブジェクトの状態をDBに保存するINSERT文を実行している。
 ### redirect()->route()は何をしているか
 - ルートにリダイレクトさせる処理
+- todo.index という名前のルートへリダイレクトする処理で、そのルートに対応するコントローラのメソッドが実行され、結果としてビューが表示されるようにしている。
+- 関係する処理としては、scr/routes/web.phpに記載されている
+- Route::get('/todo', [TodoController::class, 'index'])->name('todo.index');
+- Route::get('/todo', 'TodoController@index')->name('todo.index'); 
+- 上記の記述でTodoControllerのindexメソッドを呼び、操作することができる。今回はindexメソッド内のtodoモデルを取得しViewに表示することができる。例えばcreate画面にて「カレー」と入力されたら、todoTodoControllerのindexメソッド内のtodoモデルから全件取得して一覧表示画面に戻り、「カレー」と新たに表示される仕組み
+順番としては「カレー」と新規作成画面（create）で入力されpost（送信）される→scr/routes/web.phpへ送られる→TodoController の store メソッドで「カレー」を Todoモデルに保存→'todo.index'ルートが実行される。→todoTodoControllerのindexメソッド内のtodoモデルから全件取得して一覧表示画面に戻り、「カレー」と一覧に新たに表示される
 ## その他
 
 ### テーブル構成をマイグレーションファイルで管理するメリット
@@ -61,7 +73,7 @@ CollectionインスタンスはLaravelで用意されているクラスで、配
 - up : データベースに新しいテーブル、カラム、またはインデックスを追加するために使用
 -  down : upメソッドによって実行する操作と逆の操作を実装し、以前の状態へ戻すために使用
 ### Seederクラスの役割は何か
-レコードの作成を担う。テストデータを導入したりするときに使用
+レコードの作成を担う。テストデータを導入したりするときに使用する。デバックを行ったりできる
 ### route関数の引数・返り値・使用するメリット
 - ->name('ルート名')を使用することで名前付きルートを定義でき、route('ルート名')を使用することでそのルートに対応するURLを生成することができる。
 - 返り値はURLの文字列となる→可読性向上につながる
