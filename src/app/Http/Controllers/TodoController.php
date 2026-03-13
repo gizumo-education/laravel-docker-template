@@ -11,33 +11,45 @@ use App\Todo;
 
 class TodoController extends Controller
 {
-  // <ここから>
-    public function index()
+
+  private $todo; 
+
+  public function __construct(Todo $todo)
     {
-        $todo = new Todo();
-        $todos = $todo->all();
-      // dd('Hello World!');
-        return view('todo.index', ['todos' => $todos]);
+      $this->todo = $todo;
     }
-    // <ここまで>
 
-    public function create()
- {
-    // TODO: 第1引数を指定
-    return view('todo.create'); // 追記
- }
+   // <ここから>
+   public function index()
+   {
+      $todos = $this->todo->all();
+      // dd('Hello World!');
+      return view('todo.index', ['todos' => $todos]); //array型
+   }
+   // <ここまで>
 
-    public function store(Request $request)
- {
-   $inputs = $request->all(); // 変更
+   public function create()
+   {
+      // TODO: 第1引数を指定
+      return view('todo.create'); // 追記
+   }
 
-    $todo = new Todo();
-    $todo->fill($inputs); // 変更
-    $todo->save();
+   public function store(Request $request)
+   {
+      $inputs = $request->all(); // 変更
 
-    return redirect()->route('todo.index');   
+      $this->todo->fill($inputs); // 変更
+      $this->todo->save(); // 変更
 
- }
+      return redirect()->route('todo.index');
+   }
+
+   public function show($id)
+   {
+    $todo = $this->todo->find($id);
+    return view('todo.show', ['todo' => $todo]);
+   }
+
 
 
 }
