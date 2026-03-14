@@ -4,9 +4,9 @@ use Illuminate\Support\Facades\DB;
 
 class TodoSeeder extends Seeder
 {
-    public function run()
+    public function run() //テストデータ情報
     {
-        DB::table('todos')->truncate();
+        DB::table('todos')->truncate(); //テーブルの既存データ削除
 
         $testData = [
             [
