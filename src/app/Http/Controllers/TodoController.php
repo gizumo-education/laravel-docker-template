@@ -73,4 +73,12 @@ class TodoController extends Controller
 
     }
 
+        public function delete($id)
+    {
+        $todo = Todo::find($id); //指定したidのデータ1件をDBから取得➡️今回の場合は削除したい対象のデータ
+        $todo->delete(); //受け取った値を削除処理
+        return redirect()->route('todo.index');//リダイレクト処理➡️削除するのでidの指定は不要➕削除した後は一覧画面にリダイレクトしたいのでindexへ
+        // dd('削除のルート実行！');
+    }
+
 }
