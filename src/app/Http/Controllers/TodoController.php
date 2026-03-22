@@ -12,7 +12,7 @@ class TodoController extends Controller
         $todo = new Todo(); //Todoモデルのインスタンス生成 //Eloquentモデル
         $todos = $todo->all(); //todosテーブルの全レコード取得　SELECT * FROM todos;　 //返り値：Collectionのインスタンス　//Collectionとは？todosのデータは？何が入ってる？
 
-        return view('todo.index', ['todos' => $todos]); //view関数?なぜ関数とわかるのか //view関数の書き方
+        return view('todo.index', ['todos' => $todos]); //第一引数と第二引数を変更した場合どこを変えれば実行されるのか 　　//課題
     
     }
     public function create() //新規作成
@@ -21,14 +21,11 @@ class TodoController extends Controller
     }
     public function store(Request $request)
 {
-    $inputs = $request->all();//フォームから送信されたtodoデータの取得
+    $inputs = $request->all();//フォームから送信されたtodoデータの取得　　//課題//all();の引数　
 
-    // 1. todosテーブルの1レコードを表すTodoクラスをインスタンス化
     $todo = new Todo();
-    // 2. Todoインスタンスのカラム名のプロパティに保存したい値を代入
-    $todo->fill($inputs);
-    // 3. Todoインスタンスの`->save()`を実行してオブジェクトの状態をDBに保存するINSERT文を実行
+    $todo->fill($inputs); //課題 fillメソッドの処理
     $todo->save();
-    return redirect()->route('todo.index'); //viewではない理由は？なぜredirect？
+    return redirect()->route('todo.index'); //viewではない理由は？ 更新されたデータの取得されない　
 }
 }

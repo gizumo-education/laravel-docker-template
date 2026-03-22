@@ -21,6 +21,6 @@ class TodoSeeder extends Seeder
             ],
         ];
 
-        DB::table('todos')->insert($testData);
+        DB::table('todos')->insert($testData); //INSERT文
     }
 }
