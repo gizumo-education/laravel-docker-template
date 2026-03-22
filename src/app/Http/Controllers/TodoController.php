@@ -9,10 +9,10 @@ class TodoController extends Controller
 {
     public function index() //一覧表示
     {
-        $todo = new Todo(); //Todoモデルのインスタンス生成 //Eloquentモデル
-        $todos = $todo->all(); //todosテーブルの全レコード取得　SELECT * FROM todos;　 //返り値：Collectionのインスタンス　//Collectionとは？todosのデータは？何が入ってる？
+        $todo = new Todo();
+        $todos = $todo->all();
 
-        return view('todo.index', ['todos' => $todos]); //第一引数と第二引数を変更した場合どこを変えれば実行されるのか 　　//課題
+        return view('todo.index', ['todos' => $todos]);
     
     }
     public function create() //新規作成
@@ -21,11 +21,11 @@ class TodoController extends Controller
     }
     public function store(Request $request)
 {
-    $inputs = $request->all();//フォームから送信されたtodoデータの取得　　//課題//all();の引数　
+    $inputs = $request->all();
 
     $todo = new Todo();
-    $todo->fill($inputs); //課題 fillメソッドの処理
+    $todo->fill($inputs);
     $todo->save();
-    return redirect()->route('todo.index'); //viewではない理由は？ 更新されたデータの取得されない　
+    return redirect()->route('todo.index');
 }
 }
