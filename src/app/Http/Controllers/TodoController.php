@@ -7,13 +7,16 @@ use App\Todo;
 
 class TodoController extends Controller
 {
+    private $todo;
+    public function __construct(Todo $todo)
+    {
+        $this->todo = $todo;
+    }
     public function index() //一覧表示
     {
-        $todo = new Todo();
-        $todos = $todo->all();
+        $todos = $this->todo->all();
 
         return view('todo.index', ['todos' => $todos]);
-    
     }
     public function create() //新規作成
     {
@@ -21,18 +24,16 @@ class TodoController extends Controller
     }
     public function store(Request $request)
     {
-    $inputs = $request->all();
+        $inputs = $request->all();
 
-    $todo = new Todo();
-    $todo->fill($inputs);
-    $todo->save();
-    return redirect()->route('todo.index');
+        $this->todo->fill($inputs); // 変更
+        $this->todo->save(); // 変更
+    
+        return redirect()->route('todo.index');
     }
     public function show($id)
     {
-        $model = new Todo();
-        $todo = $model->find($id);
-
-        return view('todo.show', ['todo' => $todo]);
-    }
+        $todo = $this->todo->find($id);
+    return view('todo.show', ['todo' => $todo]);
+}
 }
