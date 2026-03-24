@@ -12,3 +12,5 @@ class Todo extends Model
         'content',
     ];
 }
+
+//Todoクラスとtodosテーブルをマッピングすることによってデータベースを操作できるようになる

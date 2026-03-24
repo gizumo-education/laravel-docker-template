@@ -8,6 +8,8 @@ use App\Todo;
 
 class TodoController extends Controller
 {
+
+    //データ取得し一覧画面の表示するために値を渡す
     public function index()
     {
        
@@ -17,6 +19,7 @@ class TodoController extends Controller
         return view('todo.index', ['todos' => $todos]); 
     }
 
+    //ボタンを押し新規作成画面に遷移し表示させる
     public function create()
 {
     return view('todo.create');
@@ -26,7 +29,6 @@ public function store(Request $request)
 {
     //フォームから送信された値を一括で取得
     $inputs = $request->all();
-    dd($inputs);
 
      // 1. todosテーブルの1レコードを表すTodoクラスをインスタンス化
     $todo = new Todo(); 
@@ -36,6 +38,15 @@ public function store(Request $request)
     $todo->save();
 
     return redirect()->route('todo.index');
+}
+
+//詳細取得
+public function show($id)
+{
+    $model = new Todo();
+    $todo = $model->find($id);
+
+    return view('todo.show', ['todo' => $todo]);
 }
 
 }
