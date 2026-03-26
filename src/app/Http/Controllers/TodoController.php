@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
+use App\Http\Requests\TodoRequest;
 use App\Todo;
 
 class TodoController extends Controller
@@ -15,37 +14,34 @@ class TodoController extends Controller
     public function index() //一覧表示
     {
         $todos = $this->todo->all();
-
         return view('todo.index', ['todos' => $todos]);
     }
     public function create() //新規作成
     {
         return view('todo.create');
     }
-    public function store(Request $request)
+    public function store(TodoRequest $request)
     {
         $inputs = $request->all();
-
         $this->todo->fill($inputs); // 変更
         $this->todo->save(); // 変更
-    
         return redirect()->route('todo.index');
     }
     public function show($id)
     {
         $todo = $this->todo->find($id);
-    return view('todo.show', ['todo' => $todo]);
+        return view('todo.show', ['todo' => $todo]);
     } 
     public function edit($id)
     {
-    $todo = $this->todo->find($id);
-    return view('todo.edit', ['todo' => $todo]);
-    }
-    public function update(Request $request, $id)
+        $todo = $this->todo->find($id);
+        return view('todo.edit', ['todo' => $todo]);
+   }
+    public function update(TodoRequest $request, $id)
     {
-    $inputs = $request->all();
-    $todo = $this->todo->find($id);
-    $todo->fill($inputs)->save();
-    return redirect()->route('todo.show', $todo->id);
-}
+       $inputs = $request->all();
+       $todo = $this->todo->find($id);
+       $todo->fill($inputs)->save();
+       return redirect()->route('todo.show', $todo->id);
+    }
 }
