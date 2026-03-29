@@ -23,8 +23,8 @@ class TodoController extends Controller
     public function store(TodoRequest $request)
     {
         $inputs = $request->all();
-        $this->todo->fill($inputs); // 変更
-        $this->todo->save(); // 変更
+        $this->todo->fill($inputs);
+        $this->todo->save();
         return redirect()->route('todo.index');
     }
     public function show($id)
@@ -32,16 +32,22 @@ class TodoController extends Controller
         $todo = $this->todo->find($id);
         return view('todo.show', ['todo' => $todo]);
     } 
-    public function edit($id)
+    public function edit($id) //編集
     {
         $todo = $this->todo->find($id);
         return view('todo.edit', ['todo' => $todo]);
    }
-    public function update(TodoRequest $request, $id)
+    public function update(TodoRequest $request, $id) //更新
     {
        $inputs = $request->all();
        $todo = $this->todo->find($id);
        $todo->fill($inputs)->save();
        return redirect()->route('todo.show', $todo->id);
+    }
+    public function delete($id)
+    {
+    $todo = $this->todo->find($id);
+    $todo->delete();
+    return redirect()->route('todo.index');
     }
 }
