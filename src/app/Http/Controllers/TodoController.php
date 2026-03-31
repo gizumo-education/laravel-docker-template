@@ -68,4 +68,13 @@ public function update(TodoRequest $request, $id) // 第1引数: リクエスト
     return redirect()->route('todo.show', $todo->id);
 }
 
+//削除対象のデータを取得,削除実装
+public function delete($id)
+{
+   $todo = $this->todo->find($id);
+   $todo->delete();
+
+   return redirect()->route('todo.index');
+}
+
 }
