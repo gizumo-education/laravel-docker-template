@@ -14,6 +14,15 @@
         <div class="col-auto">
           <a href="{{ route('todo.edit', $todo->id) }}" class="btn btn-info">編集する</a>
         </div>
+         <div class="col-auto">
+           <!-- TODO: ToDo削除のルートが実行されるようaction属性を指定 -->
+          <form method="POST" action="{{ route('todo.delete', $todo->id) }}">
+            <!-- TODO: DELETEメソッドでリクエストするための記述を追記 -->
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="btn btn-danger">削除する</button>
+          </form>
+        </div>
       </div>
     </div>
   </div>

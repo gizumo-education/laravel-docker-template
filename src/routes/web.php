@@ -30,3 +30,6 @@ Route::post('/todo', 'TodoController@store')->name('todo.store');
 Route::put('/todo/{id}', 'TodoController@update')->name('todo.update');
 
 Route::get('/todo/{id}', 'TodoController@show')->name('todo.show');
+
+// TODO: 第1引数のURI指定
+Route::delete('/todo/{id}', 'TodoController@delete')->name('todo.delete');
