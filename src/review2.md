@@ -3,14 +3,14 @@
 ## Todo編集機能
 
 ### @method('PUT')を記述した行に何が出力されているか
-hiddden属性のinputタグが出力されている。
+hidden属性のinputタグが出力されている。
 
 ### findメソッドの引数に指定しているIDは何のIDか
 ルートパラメータで受け取ったTodoのIDである。
 
 ### findメソッドで実行しているSQLは何か
 todosテーブルから、idカラムが引数の値と一致するレコードを1件取得するSELECT文である。
-SoftDeletesを使用している場合は、deleted_atがNULLコードのみが取得対象となる。
+SoftDeletesを使用している場合は、deleted_atカラムがNULLのレコードのみが取得対象となる。
 ### findメソッドで取得できる値は何か
 指定したidに一致するTodoモデルのインスタンスを取得できる。
 
@@ -26,14 +26,14 @@ classはインスタンス化してオブジェクトを作成できる。
 ## その他
 
 ### TodoControllerクラスのコンストラクタはどのタイミングで実行されるか
-TodoControllerのインスタンス生成されたタイミングで実行される。
-ルートにアクセスしてTodoControllerメソッドが呼び出される呼び出される前に実行される。
+TodoControllerのインスタンスが生成されたタイミングで実行される。
+ルートにアクセスしてControllerメソッドが呼び出される前に実行される。
 ### RequestクラスからFormRequestクラスに変更した理由
 バリデーション処理をControllerから分けるため。
 TodoRequestを使用することで、Controllerの処理が実行される前に入力値の検証を行うことができる
 ### $errorsのhasメソッドの引数・返り値は何か
 引数には、エラーを確認したい入力欄のname属性を指定する
-返り値はboolean型で、指定した項目にエラーがあればtrue、なければいけないfalseを返す。
+返り値はboolean型で、指定した項目にエラーがあればtrue、なければfalseを返す。
 
 ### $errorsのfirstメソッドの引数・返り値は何か
 引数には、エラーメッセージを取得したい入力値のname属性を指定する。
@@ -41,11 +41,14 @@ TodoRequestを使用することで、Controllerの処理が実行される前�
 
 ### フレームワークとは何か
 アプリケーション開発に必要な機能や構成があらかじめ用意された枠組み。
-Laravelではルーティング、MOdel、View、Controller、バリデーションなどの機能が用意されている。
+Laravelではルーティング、Model、View、Controller、バリデーションなどの機能が用意されている。
+
 ### MVCはどういったアーキテクチャか
-アプリケーションをModel、View、Contorollerの3つに分ける設計方法である。
+アプリケーションをModel、View、Controllerの3つに分ける設計方法である。
+
 ### ORMとは何か、またLaravelが使用しているORMは何か
-ORMは、DBのテーブルやレコードをオブジェクトとして扱える容認する仕組みである。
+ORMとは、オブジェクトとデータベースを対応付けて操作できる仕組みである。
+Laravelでは、Eloquent ORM が標準で使用されている。
 
 ### composer.json, composer.lockとは何か
 composer.jsonはプロジェクトで使用するパッケージや設定を記述するファイルである。
