@@ -26,6 +26,7 @@ class TodoController extends Controller
     {
         return view('todo.create');
     }
+    
     // Laravel①ではRequest 　↓
     public function store(TodoRequest $request)
     {
