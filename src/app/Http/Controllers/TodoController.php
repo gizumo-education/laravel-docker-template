@@ -24,12 +24,10 @@ class TodoController extends Controller
 
     public function store(Request $request)
     {
-        $content = $request->input('content');
-        // 1. todosテーブルの1レコードを表すTodoクラスをインスタンス化
+        $inputs = $request->all(); //入力欄のname属性 => 入力欄のvalue属性（入力値）の形式で連想配列を返す
+
         $todo = new Todo();
-        // 2. Todoインスタンスのカラム名のプロパティに保存したい値を代入
-        $todo->content = $content;
-        // 3. Todoインスタンスの`->save()`を実行してオブジェクトの状態をDBに保存するINSERT文を実行
+        $todo->fill($inputs); //$todo->{連想配列のkey} = {連想配列のvalue}を配列の全ての要素に対して代入
         $todo->save();
 
         return redirect()->route('todo.index');
