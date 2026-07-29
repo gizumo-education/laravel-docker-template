@@ -16,6 +16,8 @@ Route::get('/todo', function () {
 */
 
 Route::get('/todo', 'TodoController@index')->name('todo.index');
+/*TodoController（クラス）のindex（メソッド）を指定　@は区切り文字*/
+
 Route::get('/todo/create', 'TodoController@create')->name('todo.create');
 
 // ToDoを新規作成するルート
