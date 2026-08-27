@@ -22,3 +22,6 @@ Route::get('/todo/create', 'TodoController@create')->name('todo.create');
 
 // ToDoを新規作成するルート
 Route::post('/todo', 'TodoController@store')->name('todo.store');
+
+// 詳細画面に遷移するルート
+Route::get('/todo/{id}', 'TodoController@show')->name('todo.show');
