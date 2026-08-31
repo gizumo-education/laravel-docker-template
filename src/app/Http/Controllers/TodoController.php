@@ -9,6 +9,14 @@ use Illuminate\Http\Request;
 
 class TodoController extends Controller
 {
+    private $todo;
+
+    public function __construct(Todo $todo)
+    {
+        $this->todo = $todo;
+    }
+
+
     public function index()
     {
         $todo = new Todo();
@@ -33,11 +41,10 @@ class TodoController extends Controller
         //フォームの値を取得
         //フォームのname属性をキーに、フォームに入力した値をバリューとして連想配列を返す
 
-        $todo = new Todo();
-        $todo->fill($inputs);
+        $this->todo->fill($inputs);
         //$inputsに格納しているフォームの値に対応した連想配列をTodoインスタンスの各プロパティに一括で代入
-
-        $todo->save();
+        
+        $this->todo->save();
         //オブジェクトの状態をDBに保存（INSERT文が実行される）
 
         return redirect()->route('todo.index');
@@ -46,8 +53,7 @@ class TodoController extends Controller
 
     public function show($id)
     {
-        $model = new Todo();
-        $todo = $model->find($id);
+        $todo = $this->todo->find($id);
 
         return view('todo.show', ['todo' => $todo]);
     }
