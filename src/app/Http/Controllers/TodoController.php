@@ -43,7 +43,7 @@ class TodoController extends Controller
 
         $this->todo->fill($inputs);
         //$inputsに格納しているフォームの値に対応した連想配列をTodoインスタンスの各プロパティに一括で代入
-        
+
         $this->todo->save();
         //オブジェクトの状態をDBに保存（INSERT文が実行される）
 
@@ -56,5 +56,12 @@ class TodoController extends Controller
         $todo = $this->todo->find($id);
 
         return view('todo.show', ['todo' => $todo]);
+    }
+
+    public function edit($id)
+    {
+        $todo = $this->todo->find($id);
+
+        return view('todo.edit', ['todo' => $todo]);
     }
 }

@@ -25,3 +25,6 @@ Route::post('/todo', 'TodoController@store')->name('todo.store');
 
 // 詳細画面に遷移するルート
 Route::get('/todo/{id}', 'TodoController@show')->name('todo.show');
+
+// Todoを編集するルート
+Route::get('/todo/{id}/edit', 'TodoController@edit')->name('todo.edit');
