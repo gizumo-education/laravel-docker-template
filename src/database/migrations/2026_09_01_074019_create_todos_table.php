@@ -30,6 +30,3 @@ class CreateTodosTable extends Migration
         Schema::dropIfExists('todos');
     }
 }
-マイグレーション
-php artisan migrate
-開発者同士でテーブルの構成を統一させることができる
