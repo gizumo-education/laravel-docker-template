@@ -5,7 +5,7 @@ use App\Todo;
 use Illuminate\Http\Request;
 
 class TodoController extends Controller
-{   
+{
     private $todo;
     public function __construct(Todo $todo)
     {
@@ -28,8 +28,8 @@ class TodoController extends Controller
     {
         $inputs = $request->all();
 
-       $this->todo->fill($inputs);
-         $this->todo->save();
+        $this->todo->fill($inputs);
+        $this->todo->save();
 
         return redirect()->route('todo.index');
     }
@@ -39,4 +39,13 @@ class TodoController extends Controller
         return view('todo.show', ['todo' => $todo]);
 
     }
+
+    public function edit($id)
+    {
+        $todo = $this->todo->find($id);
+        return view('todo.edit', ['todo' => $todo]);
+
+    }
+
+
 }
