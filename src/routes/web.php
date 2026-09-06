@@ -30,3 +30,6 @@ Route::get('/todo/{id}/edit', 'TodoController@edit')->name('todo.edit');
 
 // ToDoを更新するルート
 Route::put('/todo/{id}', 'TodoController@update')->name('todo.update');
+
+// 削除画面に遷移するルート
+Route::delete('/todo/{id}/delete', 'TodoController@delete')->name('todo.delete');

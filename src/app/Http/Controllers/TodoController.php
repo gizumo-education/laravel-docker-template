@@ -81,4 +81,15 @@ class TodoController extends Controller
         return redirect()->route('todo.show', $todo->id);
         //ブラウザを再読み込みしたときもう一度DBの変更処理が走らないよう、redirect()で次のページに移る
     }
+
+    public function delete($id)
+    {
+        $todo = $this->todo->find($id);
+        // 削除対象のレコードの情報を持つTodoモデルのインスタンスを取得
+
+        $todo->delete();
+
+        return redirect()->route('todo.index');
+        //ブラウザを再読み込みしたときもう一度DBの変更処理が走らないよう、redirect()で次のページに移る
+    }
 }
