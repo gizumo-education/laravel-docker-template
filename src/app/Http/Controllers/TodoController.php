@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\TodoRequest;
 use App\Todo;
-
-use Illuminate\Http\Request;
 
 
 class TodoController extends Controller
@@ -35,7 +34,7 @@ class TodoController extends Controller
         return view('todo.create');
     }
 
-    public function store(Request $request)
+    public function store(TodoRequest $request)
     {
         $inputs = $request->all();
         //フォームの値を取得
@@ -66,7 +65,7 @@ class TodoController extends Controller
         return view('todo.edit', ['todo' => $todo]);
     }
 
-    public function update(Request $request, $id) // 第1引数: リクエストされた値の取得　第2引数: 更新対象のルートパラメータの取得
+    public function update(TodoRequest $request, $id) // 第1引数: リクエストされた値の取得　第2引数: 更新対象のルートパラメータの取得
     {
         $inputs = $request->all();
         //フォームの値を取得
@@ -74,7 +73,7 @@ class TodoController extends Controller
 
         $todo = $this->todo->find($id);
         //データベースのidカラムが$idの値と一致するレコードを取得
-        
+
         $todo->fill($inputs)->save();
         //フォームに入力した値を、$idの値と一致するレコードのインスタンスのプロパティに代入
         //オブジェクトの状態をDBに保存（INSERT文が実行される）
