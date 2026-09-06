@@ -54,6 +54,7 @@ class TodoController extends Controller
     public function show($id)
     {
         $todo = $this->todo->find($id);
+        //データベースのidカラムが$idの値と一致するレコードを取得
 
         return view('todo.show', ['todo' => $todo]);
     }
@@ -63,5 +64,22 @@ class TodoController extends Controller
         $todo = $this->todo->find($id);
 
         return view('todo.edit', ['todo' => $todo]);
+    }
+
+    public function update(Request $request, $id) // 第1引数: リクエストされた値の取得　第2引数: 更新対象のルートパラメータの取得
+    {
+        $inputs = $request->all();
+        //フォームの値を取得
+        //フォームのname属性をキーに、フォームに入力した値をバリューとして連想配列を返す
+
+        $todo = $this->todo->find($id);
+        //データベースのidカラムが$idの値と一致するレコードを取得
+        
+        $todo->fill($inputs)->save();
+        //フォームに入力した値を、$idの値と一致するレコードのインスタンスのプロパティに代入
+        //オブジェクトの状態をDBに保存（INSERT文が実行される）
+
+        return redirect()->route('todo.show', $todo->id);
+        //ブラウザを再読み込みしたときもう一度DBの変更処理が走らないよう、redirect()で次のページに移る
     }
 }

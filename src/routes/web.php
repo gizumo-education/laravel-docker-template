@@ -16,7 +16,6 @@ Route::get('/todo', function () {
 */
 
 Route::get('/todo', 'TodoController@index')->name('todo.index');
-/*TodoController（クラス）のindex（メソッド）を指定　@は区切り文字*/
 
 Route::get('/todo/create', 'TodoController@create')->name('todo.create');
 
@@ -26,5 +25,8 @@ Route::post('/todo', 'TodoController@store')->name('todo.store');
 // 詳細画面に遷移するルート
 Route::get('/todo/{id}', 'TodoController@show')->name('todo.show');
 
-// Todoを編集するルート
+// 編集画面に遷移するルート
 Route::get('/todo/{id}/edit', 'TodoController@edit')->name('todo.edit');
+
+// ToDoを更新するルート
+Route::put('/todo/{id}', 'TodoController@update')->name('todo.update');
