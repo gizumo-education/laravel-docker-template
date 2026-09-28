@@ -3,10 +3,8 @@
 ## Todo編集機能
 
 ### @method('PUT')を記述した行に何が出力されているか
-`@method('PUT')`は、
-
-`<input type="hidden" name="_method" value="PUT">`
-
+`@method('PUT')`は、  
+`<input type="hidden" name="_method" value="PUT">`  
 というコードを出力する。
 
 例えば、
@@ -25,8 +23,7 @@
 ```
 になる。
 
-HTMLの仕様上、`method`属性に`PUT`は書けない。
-
+HTMLの仕様上、`method`属性に`PUT`は書けない。  
 しかし、`name`属性が`_method`のデータを送信すると、Laravelは`value`属性の値をHTTPメソッドとして解釈する。
 
 また、`@method('PUT')`と書くと、`<input type="hidden" name="_method" value="PUT">`と書くより短いコードで`PUT`メソッドを指定できる。
@@ -41,15 +38,13 @@ HTMLの仕様上、`method`属性に`PUT`は書けない。
 findメソッドで取得したレコードに対応するモデルクラスのインスタンス。
 
 ### saveメソッドは何を基準にINSERTとUPDATEを切り替えているのか
-Modelクラスの`exists`プロパティを基準にしている。
-
+Modelクラスの`exists`プロパティを基準にしている。  
 `exists`プロパティが`true`なら`UPDATE`文、`false`なら`INSERT`文を実行する。
 
 <details>
 <summary>existsプロパティとは</summary>
 
-ModelクラスからTodoクラスへ継承されているプロパティ。
-
+ModelクラスからTodoクラスへ継承されているプロパティ。  
 DBに存在するレコードを取得し作るTodoインスタンスなら`true`に、新しくインスタンス化するTodoインスタンスは`false`に設定される。
 </details>
 
@@ -61,18 +56,16 @@ DBに存在するレコードを取得し作るTodoインスタンスなら`true
 | 1つのクラスに複数のトレイトを追加できる | 1つのクラスに1つの親クラスしか継承できない |
 
 ### traitを使用するメリットとは
-複数のクラスでコードを共通化し再利用できること。
-
+複数のクラスでコードを共通化し再利用できること。  
 ⇒同じコードを何度も書かなくて済み、修正も一か所で済む！
 
-また、1つのクラスに複数のトレイトを追加できる
-
+また、1つのクラスに複数のトレイトを追加できる  
 ⇒クラスに必要な機能を組み合わせやすい！
 
 ## その他
 
 ### TodoControllerクラスのコンストラクタはどのタイミングで実行されるか
-TodoControllerクラスがインスタンス化されたタイミング。
+TodoControllerクラスがインスタンス化されたタイミング。  
 TodoControllerクラスは、Todo一覧画面を表示するときや、Todoを作成するときなど、Todoリストに関する処理を行う様々なタイミングで呼ばれる。
 
 ### RequestクラスからFormRequestクラスに変更した理由
