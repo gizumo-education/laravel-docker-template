@@ -1,8 +1,10 @@
 FROM php:7.4-apache
+# :arrow_down: 1. 拡張機能インストーラーを別の公式イメージからコピーして持ってくる
+COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/local/bin/
 
-RUN apt-get update && apt-get install -y libonig-dev libzip-dev git vim unzip && \
-    docker-php-ext-install pdo_mysql mysqli mbstring zip && \
-    a2enmod rewrite
+# :arrow_down: 2. apt-get を使わず、ツール経由で安全にPHPモジュールをインストールする
+RUN install-php-extensions pdo_mysql mysqli mbstring zip && \
+    a2enmod rewrite
 
 WORKDIR /var/www/src
 
