@@ -6,6 +6,8 @@ RUN sed -i 's|^deb http://deb.debian.org/debian bullseye main|deb http://snapsho
     && apt-get -o Acquire::Check-Valid-Until=false update \
     && apt-get install -y \
         gnupg \
+        git \
+        libonig-dev \
         libzip-dev \
         unzip \
         zlib1g-dev \
@@ -13,8 +15,11 @@ RUN sed -i 's|^deb http://deb.debian.org/debian bullseye main|deb http://snapsho
         vim \
     && docker-php-ext-install \
         pdo_mysql \
+        mysqli \
+        mbstring \
         opcache \
         zip \
+    && a2enmod rewrite \
     && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /var/www/src
