@@ -13,7 +13,6 @@
 </head>
 
 <body>
-  <!-- 追加 -->
   <div id="app">
     <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
       <div class="container">
@@ -31,6 +30,10 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-md-8">
+            <p class="text-left">
+              <!-- href属性にURL追記 -->
+              <a class="btn btn-success" href="http://localhost:8080/todo/create">ToDoを追加</a>
+            </p>
             <div class="card">
               <div class="card-header">
                 ToDo一覧
