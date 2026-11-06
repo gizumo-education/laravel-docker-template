@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Todo;
+use App\Http\Requests\TodoRequest;
 
-use Illuminate\Http\Request;
+use App\Todo;
 
 class TodoController extends Controller
 {
@@ -28,7 +28,7 @@ class TodoController extends Controller
     }
 
     //フォームから送られた内容をtodosテーブルに保存し、一覧画面へ移動する処理
-    public function store(Request $request)
+    public function store(TodoRequest $request)
     {
         $inputs = $request->all();
 
@@ -51,7 +51,7 @@ class TodoController extends Controller
         return view('todo.edit', ['todo' => $todo]);
     }
 
-    public function update(Request $request, $id)
+    public function update(TodoRequest $request, $id)
     {
         $inputs = $request->all();
         $todo = $this->todo->find($id);
